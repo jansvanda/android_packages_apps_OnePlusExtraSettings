@@ -26,4 +26,6 @@
     <declare-styleable name="ColorPreference">
         <attr name="defaultColorValue" format="integer" />
     </declare-styleable>
+
+    
 </resources>
