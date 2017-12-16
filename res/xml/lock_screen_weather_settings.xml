@@ -27,13 +27,13 @@
                 android:targetClass="org.omnirom.omnijaws.SettingsActivityService" />
     </Preference>
 
-    <com.nitrogen.settings.preferences.SystemSettingSwitchPreference
+    <com.beast.settings.preferences.SystemSettingSwitchPreference
         android:key="lock_screen_show_weather"
         android:title="@string/weather_show_weather_title"
         android:summary="@string/weather_show_weather_summary" 
         android:defaultValue="false" />
 
-    <com.nitrogen.settings.preferences.SystemSettingSwitchPreference
+    <com.beast.settings.preferences.SystemSettingSwitchPreference
         android:key="lock_screen_show_weather_location"
         android:title="@string/weather_show_location_title"
         android:summary="@string/weather_show_location_summary"
