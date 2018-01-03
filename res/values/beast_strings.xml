@@ -153,7 +153,7 @@
     <string name="quick_settings_vibrate_summary">Vibrate when touching QS tiles</string> 
 	
     <!-- QS footer warnings --> 
-    <string name="qs_footer_warnings_title">QS footer warnings</string> 
+    <string name="qs_footer_warnings_title">Footer warnings</string> 
     <string name="qs_footer_warnings_summary">Display a warning at bottom of QS panel when network is monitored by external apps or vpn</string>
 	
     <string name="systemui_theme_style_title">UI Style</string>
@@ -203,7 +203,7 @@
     <string name="gesture_anywhere_title">Gesture Anywhere</string>
     <string name="gesture_anywhere_enabled_title">Gesture Anywhere</string>
     <string name="gesture_anywhere_enabled_summary">Enable the Gesture Anywhere feature</string>
-    <string name="gesture_anywhere_position_title">Loction</string>
+    <string name="gesture_anywhere_position_title">Location</string>
     <string name="gesture_anywhere_position_left">Left edge</string>
     <string name="gesture_anywhere_position_right">Right edge</string>
     <string name="gesture_anywhere_gestures_title">Gestures</string>
@@ -333,7 +333,7 @@
     <!-- Double Tap -->
     <string name="dtts_category_header">Double tap to sleep</string>
     <!-- Double Tap Lockscreen to Sleep -->
-    <string name="double_tap_to_sleep_lockscreen_title">Lockscreen</string>
+    <string name="double_tap_to_sleep_lockscreen_title">Double tap to sleep</string>
     <string name="double_tap_to_sleep_lockscreen_summary">Double tap on the top third or bottom shortcut area of the lock screen to put the device to sleep</string>
     <!-- Double tap-to-sleep -->
     <string name="double_tap_to_sleep_title">Status bar</string>
@@ -365,7 +365,7 @@
     <string name="torch_power_button_gesture_lp">Long press power to toggle torch</string>
 
     <!-- QS rows and columns -->
-    <string name="qs_rows_columns_title">QS rows and columns</string>
+    <string name="qs_rows_columns_title">Rows and columns</string>
     <string name="qs_rows_portrait_title">Tiles rows on portrait</string>
     <string name="qs_rows_landscape_title">Tiles rows on landscape</string>
     <string name="qs_columns_portrait_title">Tiles columns on portrait</string>
@@ -431,16 +431,16 @@
     <!-- UI debug setting: show cpu usage summary [CHAR LIMIT=50] -->
     <string name="show_cpu_info_summary">Screen overlay showing current CPU info</string>
 
-    <string name="qs_custom_title">Qs row and column settings</string>
-    <string name="qs_pulldown_title">QS pulldown</string>
-    <string name="qs_misc_title">QS Misc settings</string>
+    <string name="qs_custom_title">Layout</string>
+    <string name="qs_pulldown_title">Pulldown</string>
+    <string name="qs_misc_title">Misc</string>
 
     <!-- 4G icon -->
     <string name="show_fourg_icon_title">4G icon</string>
-    <string name="show_fourg_icon_summary">Display 4G icon in signal icon instead LTE</string>
+    <string name="show_fourg_icon_summary">Display 4G icon instead of LTE in statusbar</string>
 
     <!-- Small quick settings scroller --> 
-    <string name="qqs_scroll_title">Scroll small QS tiles</string> 
+    <string name="qqs_scroll_title">Scroll QS tiles</string> 
     <string name="qqs_scroll_summary">Allow scrolling through the small QS tiles</string> 
 
     <!-- Whether to display IME switcher notifcation -->
@@ -598,7 +598,7 @@
     <string name="listview_bounce_interpolator">Bounce</string>
 
     <!-- AOKP custom system animations -->
-    <string name="system_animation_title">System Animations</string>
+    <string name="system_animation_title">System</string>
     <string name="activity_open_title">Activity open animation</string>
     <string name="activity_close_title">Activity close animation</string>
     <string name="task_open_title">Task open animation</string>
