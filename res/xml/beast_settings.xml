@@ -122,15 +122,7 @@
         <Preference
             android:key="navigationbar_category"
             android:title="@string/navbar_title"
-            android:fragment="com.beast.settings.fragments.NavbarSettings"/>      
-
-            
-        <!-- Gesture anywhere -->
-        <Preference
-            android:key="gesture_anywhere"
-            android:fragment="com.beast.settings.gestureanywhere.GestureAnywhereSettings"
-            android:title="@string/gesture_anywhere_title"      
-            />
+            android:fragment="com.beast.settings.fragments.NavbarSettings"/>
 			
 		<!-- Power Menu -->
         <Preference
@@ -140,8 +132,15 @@
 			
     </PreferenceCategory>
 
-	<PreferenceCategory android:key="ime_category"
-         android:title="@string/ime_category">		 
+	<PreferenceCategory android:key="misc_category"
+         android:title="@string/misc_category">	
+
+        <!-- Gesture anywhere -->
+        <Preference
+            android:key="gesture_anywhere"
+            android:fragment="com.beast.settings.gestureanywhere.GestureAnywhereSettings"
+            android:title="@string/gesture_anywhere_title"/>
+			
         <!-- IME -->
         <Preference
             android:key="keyboard_category"

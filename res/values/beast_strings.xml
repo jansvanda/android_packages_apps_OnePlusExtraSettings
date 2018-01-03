@@ -87,9 +87,9 @@
     <string name="ticker_media_enabled">Notification and music ticker</string>
 
     <!-- Beast statusbar logo -->
-    <string name="status_bar_logo_title">Beast logo</string>
-    <string name="status_bar_logo_summary">Enable to show Beast logo on statusbar</string>
-    <string name="status_bar_logo_style_title">Beast logo style</string>
+    <string name="status_bar_logo_title">Logo</string>
+    <string name="status_bar_logo_summary">Enable to show logo on statusbar</string>
+    <string name="status_bar_logo_style_title">Logo style</string>
     <string name="status_bar_logo_color_title">Select color</string>
 
     <!-- General strings -->
@@ -255,8 +255,7 @@
     <string name="swap_navigation_keys_summary">Switch the back and recent buttons with each other</string>
     <string name="volume_keys_category">Volume Keys</string>
     <string name="swap_keys_category">Swap Keys</string>
-    <string name="ime_category">Advanced IME settings</string>
-    <string name="keyboard_ime_title">Keyboard and IME</string>
+    <string name="keyboard_ime_title">Keyboard</string>
     <string name="dlg_ok">Okay</string>
 
     <string name="powermenu_sofreboot">Softreboot</string>
