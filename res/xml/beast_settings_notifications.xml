@@ -18,6 +18,13 @@
     android:title="@string/notifications_title"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
+   <com.beast.settings.preferences.SystemSettingSwitchPreference
+             android:key="less_boring_heads_up"
+             android:title="@string/less_boring_heads_up_title"
+             android:summary="@string/less_boring_heads_up_summary"
+             android:defaultValue="true" />
+  
+
     <!-- Heads up -->
     <Preference
         android:key="heads_up_notifications"
@@ -34,11 +41,40 @@
         android:fragment="com.android.settings.applications.NotificationApps"
         android:title="@string/notification_light_settings" />
 
-    <!--<com.beast.settings.preferences.SystemSettingSwitchPreference
-        android:key="toast_icon"
-        android:title="@string/toast_icon_title"
-        android:summary="@string/toast_icon_summary"
-        android:defaultValue="true" />-->
+     <com.beast.settings.preferences.SecureSettingSwitchPreference
+            android:key="adb_notify"
+            android:title="@string/adb_notify"
+            android:summary="@string/adb_notify_summary"
+            android:defaultValue="true" />
+
+     <com.beast.settings.preferences.SystemSettingSwitchPreference
+         android:key="force_expanded_notifications"
+         android:title="@string/force_expanded_notifications_title"
+         android:summary="@string/force_expanded_notifications_summary" />
+
+      <!-- <com.beast.settings.preferences.SystemSettingSwitchPreference
+        android:key="disable_fc_notifications"
+        android:title="@string/disable_fc_notifications_title"
+        android:summary="@string/disable_fc_notifications_summary"
+        android:defaultValue="false" />        -->
+
+     <com.beast.settings.preferences.GlobalSettingSwitchPreference
+            android:key="show_cpu_overlay"
+            android:title="@string/show_cpu_info"
+            android:summary="@string/show_cpu_info_summary" 
+            android:defaultValue="false" />
+
+      <com.beast.settings.preferences.SystemSettingSwitchPreference
+            android:key="mtp_dirty_hack"
+            android:title="@string/enable_mtp_dirtyhack_title"
+            android:summary="@string/enable_mtp_dirtyhack_summary"
+            android:defaultValue="true" />
+
+    <com.beast.settings.preferences.GlobalSettingSwitchPreference
+            android:key="wake_when_plugged_or_unplugged"
+            android:title="@string/wakeup_when_plugged_unplugged_title"
+            android:summary="@string/wakeup_when_plugged_unplugged_summary"
+            android:defaultValue="true" />
 
     <PreferenceCategory
         android:key="incall_vib_options"

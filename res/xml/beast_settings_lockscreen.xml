@@ -13,38 +13,28 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:title="@string/lockscreen_title"
+<PreferenceScreen 
+    xmlns:android="http://schemas.android.com/apk/res/android" android:title="@string/lockscreen_title" 
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
-
-    <Preference
-        android:key="lockscreen_weather"
-        android:title="@string/lock_screen_weather_settings_title"
-        android:fragment="com.beast.settings.fragments.LockScreenWeatherSettings" />
-
-    <Preference
-            android:title="@string/lockscreen_tuner_title" >
-            <intent android:action="android.intent.action.MAIN"
-                android:targetPackage="com.android.systemui"
-                android:targetClass="com.android.systemui.tuner.LockscreenActivity" />
-    </Preference>
-
-    <com.beast.settings.preferences.SystemSettingSwitchPreference
-        android:key="lockscreen_media_metadata"
-        android:title="@string/media_art_title"
-        android:summary="@string/media_art_summary"
-        android:defaultValue="false" />
-
-    <com.beast.settings.preferences.SystemSettingSwitchPreference
-        android:key="lockscreen_battery_info"
-        android:title="@string/lockscreen_battery_info_title"
-        android:summary="@string/lockscreen_battery_info_summary"
-        android:defaultValue="true" />
-
-    <SwitchPreference
-        android:key="fingerprint_success_vib"
-        android:title="@string/fprint_sucess_vib_title"
-        android:summary="@string/fprint_sucess_vib_summary"
-        android:persistent="false" />
+    <PreferenceCategory android:key="lockscreen_info" android:title="@string/lockscreen_info">
+        <com.beast.settings.preferences.SystemSettingSwitchPreference android:key="lockscreen_battery_info" android:title="@string/lockscreen_battery_info_title" android:summary="@string/lockscreen_battery_info_summary" android:defaultValue="true" />
+        <com.beast.settings.preferences.SystemSettingSwitchPreference android:key="lockscreen_media_metadata" android:title="@string/media_art_title" android:summary="@string/media_art_summary" android:defaultValue="false" />
+        <Preference android:key="lockscreen_weather" android:title="@string/lock_screen_weather_settings_title" android:fragment="com.beast.settings.fragments.LockScreenWeatherSettings" />
+    </PreferenceCategory>
+    <PreferenceCategory android:key="lockscreen_actions" android:title="@string/lockscreen_actions">
+            <com.beast.settings.preferences.SystemSettingSwitchPreference
+               android:key="fp_unlock_keystore"
+               android:title="@string/fp_unlock_keystore_title"
+               android:summary="@string/fp_unlock_keystore_summary"
+               android:persistent="false" />   
+        <com.beast.settings.preferences.SystemSettingSwitchPreference android:key="double_tap_sleep_lockscreen" android:title="@string/double_tap_to_sleep_lockscreen_title" android:summary="@string/double_tap_to_sleep_lockscreen_summary" android:defaultValue="true" />
+        <ListPreference android:key="torch_power_button_gesture" android:title="@string/torch_power_button_gesture_title" android:entries="@array/torch_power_button_gesture_entries" android:entryValues="@array/torch_power_button_gesture_values" />
+    </PreferenceCategory>
+    <SwitchPreference android:key="fingerprint_success_vib" android:title="@string/fprint_sucess_vib_title" android:summary="@string/fprint_sucess_vib_summary" android:persistent="false" />
+    <Preference android:key="gestures_dashboard" android:title="@string/gesture_preference_nos" android:fragment="com.android.settings.gestures.GestureSettings" />
+    <PreferenceCategory android:key="lockscreen_shortcut" android:title="@string/lockscreen_shortcut">
+        <Preference android:title="@string/lockscreen_tuner_title">
+            <intent android:action="android.intent.action.MAIN" android:targetPackage="com.android.systemui" android:targetClass="com.android.systemui.tuner.LockscreenActivity" />
+        </Preference>
+    </PreferenceCategory>
 </PreferenceScreen>
