@@ -30,14 +30,6 @@ import com.android.settings.SettingsPreferenceFragment;
 public class UISettings extends SettingsPreferenceFragment implements
 OnPreferenceChangeListener {
 
-    private static final String PREF_ON_THE_GO_ALPHA = "on_the_go_alpha";
- 
-    private CustomSeekBarPreference mOnTheGoAlphaPref;
-
-    private static final String SYSTEMUI_THEME_STYLE = "systemui_theme_style";
-
-    private ListPreference mSystemUIThemeStyle;
-
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -46,44 +38,13 @@ OnPreferenceChangeListener {
 
         PreferenceScreen prefScreen = getPreferenceScreen(); 
         ContentResolver resolver = getActivity().getContentResolver(); 
-
-       mOnTheGoAlphaPref = (CustomSeekBarPreference) findPreference(PREF_ON_THE_GO_ALPHA);
-       float otgAlpha = Settings.System.getFloat(getContentResolver(),
-		Settings.System.ON_THE_GO_ALPHA, 0.5f);
-       final int alpha = ((int) (otgAlpha * 100));
-       mOnTheGoAlphaPref.setValue(alpha);
-       mOnTheGoAlphaPref.setOnPreferenceChangeListener(this);
  
-        mSystemUIThemeStyle = (ListPreference) findPreference(SYSTEMUI_THEME_STYLE); 
-        int systemUIThemeStyle = Settings.System.getInt(resolver, 
-                Settings.System.SYSTEM_UI_THEME, 0); 
-        int valueIndex = mSystemUIThemeStyle.findIndexOfValue(String.valueOf(systemUIThemeStyle)); 
-        mSystemUIThemeStyle.setValueIndex(valueIndex >= 0 ? valueIndex : 0); 
-        mSystemUIThemeStyle.setSummary(mSystemUIThemeStyle.getEntry()); 
-        mSystemUIThemeStyle.setOnPreferenceChangeListener(this); 
-
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object objValue) {
         ContentResolver resolver = getActivity().getContentResolver(); 
-        
-               if (preference == mSystemUIThemeStyle) { 
-                   String value = (String) objValue; 
-                   Settings.System.putInt(resolver, 
-                           Settings.System.SYSTEM_UI_THEME, Integer.valueOf(value)); 
-                   int valueIndex = mSystemUIThemeStyle.findIndexOfValue(value); 
-                   mSystemUIThemeStyle.setSummary(mSystemUIThemeStyle.getEntries()[valueIndex]); 
-                   return true; 
-               } 
 
-           if (preference == mOnTheGoAlphaPref) {
-             float val = (Integer) objValue;
-             Settings.System.putFloat(getContentResolver(),
- 		    Settings.System.ON_THE_GO_ALPHA, val / 100);
-             return true;
-         }
-               
         return false;
     }
 

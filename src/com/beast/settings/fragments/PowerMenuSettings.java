@@ -32,6 +32,7 @@ import android.support.v14.preference.SwitchPreference;
 import android.provider.Settings;
 import com.android.settings.R;
 import android.support.annotation.NonNull;
+import com.beast.settings.preferences.CustomSeekBarPreference;
 
 import com.android.internal.logging.nano.MetricsProto;
 import com.android.settings.SettingsPreferenceFragment;
@@ -49,6 +50,10 @@ public class PowerMenuSettings extends SettingsPreferenceFragment
 
     private SwitchPreference mPowermenuTorch;
 
+    private static final String PREF_ON_THE_GO_ALPHA = "on_the_go_alpha";
+ 
+    private CustomSeekBarPreference mOnTheGoAlphaPref;
+
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -57,6 +62,13 @@ public class PowerMenuSettings extends SettingsPreferenceFragment
 
         final ContentResolver resolver = getActivity().getContentResolver();
         final PreferenceScreen prefScreen = getPreferenceScreen();
+
+          mOnTheGoAlphaPref = (CustomSeekBarPreference) findPreference(PREF_ON_THE_GO_ALPHA);
+       float otgAlpha = Settings.System.getFloat(getContentResolver(),
+		Settings.System.ON_THE_GO_ALPHA, 0.5f);
+       final int alpha = ((int) (otgAlpha * 100));
+       mOnTheGoAlphaPref.setValue(alpha);
+       mOnTheGoAlphaPref.setOnPreferenceChangeListener(this);
 
         mPowermenuTorch = (SwitchPreference) findPreference(KEY_POWERMENU_TORCH);
         mPowermenuTorch.setOnPreferenceChangeListener(this);
@@ -76,6 +88,13 @@ public class PowerMenuSettings extends SettingsPreferenceFragment
                     Settings.System.POWERMENU_TORCH, value ? 1 : 0);
             return true;
         }
+
+           if (preference == mOnTheGoAlphaPref) {
+             float val = (Integer) newValue;
+             Settings.System.putFloat(getContentResolver(),
+ 		    Settings.System.ON_THE_GO_ALPHA, val / 100);
+             return true;
+         }
         return false;
     }
 
