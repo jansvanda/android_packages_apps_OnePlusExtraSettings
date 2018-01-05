@@ -135,17 +135,17 @@
 	<PreferenceCategory android:key="misc_category"
          android:title="@string/misc_category">	
 
-        <!-- Gesture anywhere -->
-        <Preference
-            android:key="gesture_anywhere"
-            android:fragment="com.beast.settings.gestureanywhere.GestureAnywhereSettings"
-            android:title="@string/gesture_anywhere_title"/>
-
         <!-- App sidebar -->
         <Preference
             android:key="app_sidebar"
             android:fragment="com.beast.settings.AppSidebar"
             android:title="@string/app_sidebar_title" />
+
+        <!-- Gesture anywhere -->
+        <Preference
+            android:key="gesture_anywhere"
+            android:fragment="com.beast.settings.gestureanywhere.GestureAnywhereSettings"
+            android:title="@string/gesture_anywhere_title"/>
 			
         <!-- IME -->
         <Preference
