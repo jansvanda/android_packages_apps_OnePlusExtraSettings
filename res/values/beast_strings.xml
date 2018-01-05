@@ -179,12 +179,7 @@
     <string name="qs_footer_warnings_title">Footer warnings</string> 
     <string name="qs_footer_warnings_summary">Display a warning at bottom of QS panel when network is monitored by external apps or vpn</string>
 	
-    <string name="systemui_theme_style_title">UI Style</string>
-    <string name="systemui_theme_style_light">Light</string>
-    <string name="systemui_theme_style_dark">Dark</string>
-    <string name="systemui_theme_style_auto">Wallpaper based</string>
-
-     <!-- Slim Recents panel -->
+    <!-- Slim Recents panel -->
     <string name="slim_recents_title">Slim recents</string>
     <string name="use_slim_recents_title">Use alternative recents panel</string>
     <string name="use_slim_recents_summary">Use Slim Recents instead of the default recents view</string>

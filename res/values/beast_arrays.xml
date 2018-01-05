@@ -53,18 +53,6 @@
          <item>60000</item>
      </string-array>
 
-    <string-array name="systemui_theme_style_entries" translatable="false"> 
-        <item>@string/systemui_theme_style_auto</item> 
-        <item>@string/systemui_theme_style_light</item> 
-        <item>@string/systemui_theme_style_dark</item> 
-    </string-array> 
- 
-    <string-array name="systemui_theme_style_values" translatable="false"> 
-        <item>0</item> 
-        <item>1</item> 
-        <item>2</item> 
-    </string-array> 
-
     <!-- Torch Power button gestures -->
     <string-array name="torch_power_button_gesture_entries">
         <item>@string/torch_power_button_gesture_none</item>
