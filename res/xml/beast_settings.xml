@@ -102,11 +102,11 @@
             android:title="@string/recents_title"
             android:fragment="com.beast.settings.fragments.RecentsSettings"/>	
 
-        <!-- UI -->
+        <!-- UI-->
         <Preference
             android:key="ui_category"
-            android:title="@string/systemui_theme_style_title"
-            android:fragment="com.beast.settings.fragments.UISettings"/>	
+            android:title="@string/gesture_actions_misc_title"
+            android:fragment="com.beast.settings.fragments.UISettings"/>	 
    			
     </PreferenceCategory>
 	

@@ -16,6 +16,12 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
     android:title="@string/beast_settings_title" >
-
+   
+   <!-- Three-Finger Swipe to Screenshot -->
+     <com.beast.settings.preferences.SystemSettingSwitchPreference
+         android:key="three_finger_gesture"
+         android:title="@string/three_finger_gesture"
+         android:summary="@string/three_finger_gesture_summary"
+         android:defaultValue="false" />
             
 </PreferenceScreen>

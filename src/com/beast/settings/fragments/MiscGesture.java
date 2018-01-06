@@ -34,7 +34,7 @@ OnPreferenceChangeListener {
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-        addPreferencesFromResource(R.xml.beast_settings_ui);
+        addPreferencesFromResource(R.xml.beast_settings_miscgesture);
 
         PreferenceScreen prefScreen = getPreferenceScreen(); 
         ContentResolver resolver = getActivity().getContentResolver(); 

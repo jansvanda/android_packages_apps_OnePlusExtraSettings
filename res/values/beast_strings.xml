@@ -189,6 +189,10 @@
     <string name="qs_footer_warnings_summary">Display a warning at bottom of QS panel when network is monitored by external apps or vpn</string>
 
     <string name="systemui_theme_style_title">UI Style</string> 
+    <string name="gesture_actions_misc_title">Misc</string> 
+
+    <string name="three_finger_gesture">Three finger gesture</string>
+    <string name="three_finger_gesture_summary">Swipe three finger to screenshot</string>
 	
     <!-- Slim Recents panel -->
     <string name="slim_recents_title">Slim recents</string>
