@@ -193,6 +193,10 @@
 
     <string name="three_finger_gesture">Three finger gesture</string>
     <string name="three_finger_gesture_summary">Swipe three finger to screenshot</string>
+
+    <!-- Bluetooth status -->
+    <string name="bluetooth_battery_title">Bluetooth battery status</string>
+    <string name="bluetooth_battery_summary">Display battery status for the connected bluetooth device, if available</string>
 	
     <!-- Slim Recents panel -->
     <string name="slim_recents_title">Slim recents</string>
