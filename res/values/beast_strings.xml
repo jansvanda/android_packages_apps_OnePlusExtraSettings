@@ -86,6 +86,10 @@
     <string name="ticker_enabled">Notification ticker</string>
     <string name="ticker_media_enabled">Notification and music ticker</string>
 
+     <string name="lockscreen_rotation_title">Rotation</string>
+     <string name="lockscreen_rotation_summary_on">Lockscreen rotation is enabled</string>
+     <string name="lockscreen_rotation_summary_off">Lockscreen rotation is disabled</string>
+
     <!-- Lockscreen notif count -->
     <string name="lockscreen_maxnotif_title">Lockscreen notification count</string>
     <string name="lockscreen_maxnotif_sumary">Enable adjustment of max lockscreen notifications</string>
