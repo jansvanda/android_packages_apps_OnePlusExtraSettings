@@ -106,7 +106,7 @@
         <Preference
             android:key="ui_category"
             android:title="@string/gesture_actions_misc_title"
-            android:fragment="com.beast.settings.fragments.UISettings"/>	 
+            android:fragment="com.beast.settings.fragments.MiscGesture"/>	 
    			
     </PreferenceCategory>
 	

@@ -27,7 +27,7 @@ import java.util.HashSet;
 
 import com.android.settings.SettingsPreferenceFragment;
 
-public class UISettings extends SettingsPreferenceFragment implements
+public class MiscGesture extends SettingsPreferenceFragment implements
 OnPreferenceChangeListener {
 
     @Override
