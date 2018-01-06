@@ -20,6 +20,20 @@
         <com.beast.settings.preferences.SystemSettingSwitchPreference android:key="lockscreen_battery_info" android:title="@string/lockscreen_battery_info_title" android:summary="@string/lockscreen_battery_info_summary" android:defaultValue="true" />
         <com.beast.settings.preferences.SystemSettingSwitchPreference android:key="lockscreen_media_metadata" android:title="@string/media_art_title" android:summary="@string/media_art_summary" android:defaultValue="false" />
         <Preference android:key="lockscreen_weather" android:title="@string/lock_screen_weather_settings_title" android:fragment="com.beast.settings.fragments.LockScreenWeatherSettings" />
+    <com.beast.settings.preferences.SystemSettingSwitchPreference
+           android:key="lock_screen_custom_notif"
+           android:title="@string/lockscreen_maxnotif_title"
+           android:summary="@string/lockscreen_maxnotif_sumary"
+           android:defaultValue="false" />
+    <com.android.settings.widget.SeekBarPreference
+           android:key="lockscreen_max_notif_cofig"
+           android:title="@string/lockscreen_maxnotif_config"
+           android:max="8"
+           settings:min="3"
+           settings:units=""
+           android:persistent="false"
+           android:dependency="lock_screen_custom_notif" />
+   
     </PreferenceCategory>
     <PreferenceCategory android:key="lockscreen_actions" android:title="@string/lockscreen_actions">
             <com.beast.settings.preferences.SystemSettingSwitchPreference

@@ -86,6 +86,11 @@
     <string name="ticker_enabled">Notification ticker</string>
     <string name="ticker_media_enabled">Notification and music ticker</string>
 
+    <!-- Lockscreen notif count -->
+    <string name="lockscreen_maxnotif_title">Lockscreen notification count</string>
+    <string name="lockscreen_maxnotif_sumary">Enable adjustment of max lockscreen notifications</string>
+    <string name="lockscreen_maxnotif_config">Max lockscreen notifications</string>
+
     <!-- Beast statusbar logo -->
     <string name="status_bar_logo_title">Logo</string>
     <string name="status_bar_logo_summary">Enable to show logo on statusbar</string>

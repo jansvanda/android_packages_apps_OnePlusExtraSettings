@@ -33,6 +33,7 @@ import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceCategory;
 import android.support.v7.preference.PreferenceScreen;
+import com.android.settings.widget.SeekBarPreference;
 
 import android.provider.Settings;
 import com.android.settings.R;
@@ -43,10 +44,12 @@ public class LockScreenSettings extends SettingsPreferenceFragment implements
 
     private static final String FINGERPRINT_VIB = "fingerprint_success_vib";
     private static final String FP_UNLOCK_KEYSTORE = "fp_unlock_keystore";
+    private static final String LOCKSCREEN_MAX_NOTIF_CONFIG = "lockscreen_max_notif_cofig";
 
     private FingerprintManager mFingerprintManager;
     private SwitchPreference mFingerprintVib;
     private SwitchPreference mFpKeystore;
+    private SeekBarPreference mMaxKeyguardNotifConfig;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -66,6 +69,12 @@ public class LockScreenSettings extends SettingsPreferenceFragment implements
               Settings.System.FP_UNLOCK_KEYSTORE, 0) == 1));
       mFpKeystore.setOnPreferenceChangeListener(this);
       }
+
+      mMaxKeyguardNotifConfig = (SeekBarPreference) findPreference(LOCKSCREEN_MAX_NOTIF_CONFIG);
+      int kgconf = Settings.System.getInt(getContentResolver(),
+               Settings.System.LOCKSCREEN_MAX_NOTIF_CONFIG, 5);
+      mMaxKeyguardNotifConfig.setProgress(kgconf);
+      mMaxKeyguardNotifConfig.setOnPreferenceChangeListener(this);
 
         mFingerprintManager = (FingerprintManager) getActivity().getSystemService(Context.FINGERPRINT_SERVICE);
         mFingerprintVib = (SwitchPreference) findPreference(FINGERPRINT_VIB);
@@ -90,7 +99,12 @@ public class LockScreenSettings extends SettingsPreferenceFragment implements
              Settings.System.putInt(getActivity().getContentResolver(),
                      Settings.System.FP_UNLOCK_KEYSTORE, value ? 1 : 0);
              return true;
-             }
+        } else if (preference == mMaxKeyguardNotifConfig) {
+            int kgconf = (Integer) newValue;
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.LOCKSCREEN_MAX_NOTIF_CONFIG, kgconf);
+            return true;
+        }
         return false;
     }
 
