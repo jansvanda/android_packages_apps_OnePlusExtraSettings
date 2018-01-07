@@ -33,6 +33,11 @@
            settings:units=""
            android:persistent="false"
            android:dependency="lock_screen_custom_notif" />
+      <com.beast.settings.preferences.SystemSettingSwitchPreference
+             android:key="lockscreen_visualizer"
+             android:title="@string/lockscreen_visualizer_title"
+             android:summary="@string/lockscreen_visualizer_summary"
+             android:defaultValue="true" />
    
     </PreferenceCategory>
     <PreferenceCategory android:key="lockscreen_actions" android:title="@string/lockscreen_actions">

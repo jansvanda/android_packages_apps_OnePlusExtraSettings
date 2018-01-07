@@ -184,6 +184,10 @@
     <string name="quick_settings_vibrate_title">Vibrate on touch</string> 
     <string name="quick_settings_vibrate_summary">Vibrate when touching QS tiles</string> 
 	
+     <!-- Lockscreen visualizer -->
+     <string name="lockscreen_visualizer_title">Music visualizer</string>
+     <string name="lockscreen_visualizer_summary">Display music visualizer when available</string>
+
     <!-- QS footer warnings --> 
     <string name="qs_footer_warnings_title">Footer warnings</string> 
     <string name="qs_footer_warnings_summary">Display a warning at bottom of QS panel when network is monitored by external apps or vpn</string>

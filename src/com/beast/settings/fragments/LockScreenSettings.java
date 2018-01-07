@@ -45,10 +45,12 @@ public class LockScreenSettings extends SettingsPreferenceFragment implements
     private static final String FINGERPRINT_VIB = "fingerprint_success_vib";
     private static final String FP_UNLOCK_KEYSTORE = "fp_unlock_keystore";
     private static final String LOCKSCREEN_MAX_NOTIF_CONFIG = "lockscreen_max_notif_cofig";
+    private static final String LOCKSCREEN_VISUALIZATION = "lockscreen_visualizer";
 
     private FingerprintManager mFingerprintManager;
     private SwitchPreference mFingerprintVib;
     private SwitchPreference mFpKeystore;
+    private SwitchPreference mVisualization;
     private SeekBarPreference mMaxKeyguardNotifConfig;
 
     @Override
@@ -72,7 +74,7 @@ public class LockScreenSettings extends SettingsPreferenceFragment implements
 
       mMaxKeyguardNotifConfig = (SeekBarPreference) findPreference(LOCKSCREEN_MAX_NOTIF_CONFIG);
       int kgconf = Settings.System.getInt(getContentResolver(),
-               Settings.System.LOCKSCREEN_MAX_NOTIF_CONFIG, 5);
+               Settings.System.LOCKSCREEN_MAX_NOTIF_CONFIG, 3);
       mMaxKeyguardNotifConfig.setProgress(kgconf);
       mMaxKeyguardNotifConfig.setOnPreferenceChangeListener(this);
 
@@ -85,6 +87,15 @@ public class LockScreenSettings extends SettingsPreferenceFragment implements
                 Settings.System.FINGERPRINT_SUCCESS_VIB, 1) == 1));
         mFingerprintVib.setOnPreferenceChangeListener(this);
         }
+
+         mVisualization = (SwitchPreference) findPreference(LOCKSCREEN_VISUALIZATION);
+         if (mVisualization == null){
+             prefScreen.removePreference(mVisualization);
+         } else {
+              mVisualization.setChecked((Settings.System.getInt(getContentResolver(),
+              Settings.System.LOCKSCREEN_VISUALIZER_ENABLED, 0) == 1));
+                mVisualization.setOnPreferenceChangeListener(this);
+         }
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -104,7 +115,12 @@ public class LockScreenSettings extends SettingsPreferenceFragment implements
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.LOCKSCREEN_MAX_NOTIF_CONFIG, kgconf);
             return true;
-        }
+        }  else if (preference == mVisualization) {
+             boolean value = (Boolean) newValue;
+             Settings.System.putInt(getActivity().getContentResolver(),
+                     Settings.System.LOCKSCREEN_VISUALIZER_ENABLED, value ? 1 : 0);
+             return true;
+         }
         return false;
     }
 
