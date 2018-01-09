@@ -18,6 +18,7 @@ package com.beast.settings.fragments;
 
 import android.content.ContentResolver;
 import android.content.Context;
+import com.android.internal.logging.nano.MetricsProto;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
@@ -60,14 +61,12 @@ public class SuspendActions extends SettingsPreferenceFragment
     private PreferenceCategory mMobileDateCategory;
     private PreferenceCategory mLocationCategory;
 
-    @Override
-    protected int getPreferenceResource() {
-        return R.xml.suspend_actions;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+         addPreferencesFromResource(R.xml.suspend_actions);
 
         PreferenceScreen prefSet = getPreferenceScreen();
         ContentResolver resolver = getActivity().getContentResolver();
@@ -213,6 +212,11 @@ public class SuspendActions extends SettingsPreferenceFragment
     @Override
     public void onResume() {
         super.onResume();
+    }
+
+        @Override
+    public int getMetricsCategory() {
+        return MetricsProto.MetricsEvent.BEAST_SETTINGS;
     }
 
     private void restartService(){
