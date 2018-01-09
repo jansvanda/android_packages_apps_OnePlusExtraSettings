@@ -17,6 +17,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
+ 
+   
     <com.beast.settings.preferences.SecureSettingSwitchPreference
         android:key="sysui_volume_up_silent"
         android:title="@string/volbtn_up_zen_title"
@@ -65,4 +67,5 @@
         android:title="@string/volume_answer_call_title"
         android:summary="@string/volume_answer_call_summary"
         android:defaultValue="false" />
+
 </PreferenceScreen>

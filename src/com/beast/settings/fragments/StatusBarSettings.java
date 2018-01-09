@@ -19,6 +19,8 @@ import android.support.v14.preference.PreferenceFragment;
 import android.support.v14.preference.SwitchPreference;
 import android.provider.Settings;
 import com.android.settings.R;
+import android.content.DialogInterface;
+import android.provider.Settings.SettingNotFoundException;
 
 import java.util.Locale;
 import android.text.TextUtils;
@@ -36,11 +38,18 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Collections;
 
+import net.margaritov.preference.colorpicker.ColorPickerPreference;
+
 public class StatusBarSettings extends SettingsPreferenceFragment implements
         OnPreferenceChangeListener {
 
     private CustomSeekBarPreference mThreshold;
     private SystemSettingSwitchPreference mNetMonitor;
+    private static final String TAG = "StatusbarBatteryStyle";
+ 
+    private static final String STATUS_BAR_BATTERY_SAVER_COLOR = "status_bar_battery_saver_color";
+ 
+    private ColorPickerPreference mBatterySaverColor;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -63,6 +72,14 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
         mThreshold.setValue(value);
         mThreshold.setOnPreferenceChangeListener(this);
         mThreshold.setEnabled(isNetMonitorEnabled);
+
+       int batterySaverColor = Settings.Secure.getInt(resolver,
+                 Settings.Secure.STATUS_BAR_BATTERY_SAVER_COLOR, 0xfff4511e);
+         mBatterySaverColor = (ColorPickerPreference) findPreference("status_bar_battery_saver_color");
+         mBatterySaverColor.setNewPreviewColor(batterySaverColor);
+         mBatterySaverColor.setOnPreferenceChangeListener(this);
+ 
+         enableStatusBarBatteryDependents();
     }
 
     @Override
@@ -81,8 +98,17 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
                     Settings.System.NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD, val,
                     UserHandle.USER_CURRENT);
             return true;
+        } else  if (preference.equals(mBatterySaverColor)) {
+             int color = ((Integer) objValue).intValue();
+             Settings.Secure.putInt(getContentResolver(),
+                     Settings.Secure.STATUS_BAR_BATTERY_SAVER_COLOR, color);
+             return true;
         }
         return false;
+    }
+
+   private void enableStatusBarBatteryDependents() {
+         mBatterySaverColor.setEnabled(true);
     }
 
     @Override
