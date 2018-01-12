@@ -32,7 +32,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.beast.settings.preferences.SystemSettingSwitchPreference;
-import com.beast.settings.preferences.SeekBarPreference;
+import com.beast.settings.preferences.CustomSeekBarPreference;
 
 public class QuickSettings extends SettingsPreferenceFragment implements
         OnPreferenceChangeListener {
@@ -49,10 +49,10 @@ public class QuickSettings extends SettingsPreferenceFragment implements
     private ListPreference mSmartPulldown;
     private Preference mHeaderBrowse;
     private ListPreference mDaylightHeaderPack;
-    private SeekBarPreference  mHeaderShadow;
+    private CustomSeekBarPreference mHeaderShadow;
     private ListPreference mHeaderProvider;
     private String mDaylightHeaderProvider;
-    private SystemSettingSwitchPreference  mHeaderEnabled;
+    private SwitchPreference mHeaderEnabled;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -70,10 +70,10 @@ public class QuickSettings extends SettingsPreferenceFragment implements
         mSmartPulldown.setValue(String.valueOf(smartPulldown));
         updateSmartPulldownSummary(smartPulldown);
 
-      mHeaderBrowse = findPreference(CUSTOM_HEADER_BROWSE);
+       mHeaderBrowse = findPreference(CUSTOM_HEADER_BROWSE);
        mHeaderBrowse.setEnabled(isBrowseHeaderAvailable());
 
-       mHeaderEnabled = (SystemSettingSwitchPreference) findPreference(CUSTOM_HEADER_ENABLED);
+       mHeaderEnabled = (SwitchPreference) findPreference(CUSTOM_HEADER_ENABLED);
        mHeaderEnabled.setOnPreferenceChangeListener(this);
 
        mDaylightHeaderPack = (ListPreference) findPreference(DAYLIGHT_HEADER_PACK);
@@ -89,7 +89,7 @@ public class QuickSettings extends SettingsPreferenceFragment implements
        updateHeaderProviderSummary(headerEnabled);
        mDaylightHeaderPack.setOnPreferenceChangeListener(this);
 
-       mHeaderShadow = (SeekBarPreference) findPreference(CUSTOM_HEADER_IMAGE_SHADOW);
+       mHeaderShadow = (CustomSeekBarPreference) findPreference(CUSTOM_HEADER_IMAGE_SHADOW);
        final int headerShadow = Settings.System.getInt(resolver,
                Settings.System.STATUS_BAR_CUSTOM_HEADER_SHADOW, 0);
        mHeaderShadow.setValue((int)(((double) headerShadow / 255) * 100));
@@ -100,31 +100,31 @@ public class QuickSettings extends SettingsPreferenceFragment implements
                Settings.System.STATUS_BAR_CUSTOM_HEADER_PROVIDER);
        if (providerName == null) {
            providerName = mDaylightHeaderProvider;
-       }
-       mHeaderProvider = (ListPreference) findPreference(CUSTOM_HEADER_PROVIDER);
-       int valueIndex = mHeaderProvider.findIndexOfValue(providerName);
-       mHeaderProvider.setValueIndex(valueIndex >= 0 ? valueIndex : 0);
-       mHeaderProvider.setSummary(mHeaderProvider.getEntry());
-       mHeaderProvider.setOnPreferenceChangeListener(this);
-       mDaylightHeaderPack.setEnabled(providerName.equals(mDaylightHeaderProvider));
+   }
+        mHeaderProvider = (ListPreference) findPreference(CUSTOM_HEADER_PROVIDER);
+        int valueIndex = mHeaderProvider.findIndexOfValue(providerName);
+        mHeaderProvider.setValueIndex(valueIndex >= 0 ? valueIndex : 0);
+        mHeaderProvider.setSummary(mHeaderProvider.getEntry());
+        mHeaderProvider.setOnPreferenceChangeListener(this);
+        mDaylightHeaderPack.setEnabled(providerName.equals(mDaylightHeaderProvider));
    }
 
-   private void updateHeaderProviderSummary(boolean headerEnabled) {
-       mDaylightHeaderPack.setSummary(getResources().getString(R.string.header_provider_disabled));
-       if (headerEnabled) {
-           String settingHeaderPackage = Settings.System.getString(getActivity().getContentResolver(),
-                   Settings.System.STATUS_BAR_DAYLIGHT_HEADER_PACK);
-           int valueIndex = mDaylightHeaderPack.findIndexOfValue(settingHeaderPackage);
-           if (valueIndex == -1) {
-               // no longer found
-               Settings.System.putInt(getActivity().getContentResolver(),
-                       Settings.System.STATUS_BAR_CUSTOM_HEADER, 0);
-           } else {
-               mDaylightHeaderPack.setValueIndex(valueIndex >= 0 ? valueIndex : 0);
-               mDaylightHeaderPack.setSummary(mDaylightHeaderPack.getEntry());
-           }
-       }
-    }
+  private void updateHeaderProviderSummary(boolean headerEnabled) {
+         mDaylightHeaderPack.setSummary(getResources().getString(R.string.header_provider_disabled));
+         if (headerEnabled) {
+             String settingHeaderPackage = Settings.System.getString(getActivity().getContentResolver(),
+                     Settings.System.STATUS_BAR_DAYLIGHT_HEADER_PACK);
+             int valueIndex = mDaylightHeaderPack.findIndexOfValue(settingHeaderPackage);
+             if (valueIndex == -1) {
+                 // no longer found
+                 Settings.System.putInt(getActivity().getContentResolver(),
+                         Settings.System.STATUS_BAR_CUSTOM_HEADER, 0);
+             } else {
+                 mDaylightHeaderPack.setValueIndex(valueIndex >= 0 ? valueIndex : 0);
+                 mDaylightHeaderPack.setSummary(mDaylightHeaderPack.getEntry());
+             }
+         }
+     }
 
 
     @Override
@@ -136,6 +136,13 @@ public class QuickSettings extends SettingsPreferenceFragment implements
             updateSmartPulldownSummary(smartPulldown);
             return true;
             } else if (preference == mDaylightHeaderPack) {
+             String value = (String) newValue;
+             Settings.System.putString(resolver,
+                     Settings.System.STATUS_BAR_DAYLIGHT_HEADER_PACK, value);
+             int valueIndex = mDaylightHeaderPack.findIndexOfValue(value);
+             mDaylightHeaderPack.setSummary(mDaylightHeaderPack.getEntries()[valueIndex]);
+             return true;
+         } else if (preference == mDaylightHeaderPack) {
              String value = (String) newValue;
              Settings.System.putString(resolver,
                      Settings.System.STATUS_BAR_DAYLIGHT_HEADER_PACK, value);
@@ -163,49 +170,7 @@ public class QuickSettings extends SettingsPreferenceFragment implements
              updateHeaderProviderSummary(headerEnabled);
              return true;
          }
-
         return false;
-    }
-
- private boolean isBrowseHeaderAvailable() {
-        PackageManager pm = getActivity().getPackageManager();
-        Intent browse = new Intent();
-        browse.setClassName("org.omnirom.omnistyle", "org.omnirom.omnistyle.PickHeaderActivity");
-        return pm.resolveActivity(browse, 0) != null;
-    }
- 
-    private void getAvailableHeaderPacks(List<String> entries, List<String> values) {
-        Map<String, String> headerMap = new HashMap<String, String>();
-        Intent i = new Intent();
-        PackageManager packageManager = getActivity().getPackageManager();
-        i.setAction("org.omnirom.DaylightHeaderPack");
-        for (ResolveInfo r : packageManager.queryIntentActivities(i, 0)) {
-            String packageName = r.activityInfo.packageName;
-            String label = r.activityInfo.loadLabel(getActivity().getPackageManager()).toString();
-            if (label == null) {
-                label = r.activityInfo.packageName;
-            }
-            headerMap.put(label, packageName);
-        }
-        i.setAction("org.omnirom.DaylightHeaderPack1");
-        for (ResolveInfo r : packageManager.queryIntentActivities(i, 0)) {
-            String packageName = r.activityInfo.packageName;
-            String label = r.activityInfo.loadLabel(getActivity().getPackageManager()).toString();
-            if (r.activityInfo.name.endsWith(".theme")) {
-                continue;
-            }
-            if (label == null) {
-                label = packageName;
-            }
-            headerMap.put(label, packageName  + "/" + r.activityInfo.name);
-        }
-        List<String> labelList = new ArrayList<String>();
-        labelList.addAll(headerMap.keySet());
-        Collections.sort(labelList);
-        for (String label : labelList) {
-            entries.add(label);
-            values.add(headerMap.get(label));
-        }
     }
 
     private void updateSmartPulldownSummary(int value) {
@@ -224,6 +189,47 @@ public class QuickSettings extends SettingsPreferenceFragment implements
         }
     }
 
+   private boolean isBrowseHeaderAvailable() {
+         PackageManager pm = getActivity().getPackageManager();
+         Intent browse = new Intent();
+         browse.setClassName("org.omnirom.omnistyle", "org.omnirom.omnistyle.PickHeaderActivity");
+         return pm.resolveActivity(browse, 0) != null;
+     }
+ 
+     private void getAvailableHeaderPacks(List<String> entries, List<String> values) {
+         Map<String, String> headerMap = new HashMap<String, String>();
+         Intent i = new Intent();
+         PackageManager packageManager = getActivity().getPackageManager();
+         i.setAction("org.omnirom.DaylightHeaderPack");
+         for (ResolveInfo r : packageManager.queryIntentActivities(i, 0)) {
+             String packageName = r.activityInfo.packageName;
+             String label = r.activityInfo.loadLabel(getActivity().getPackageManager()).toString();
+             if (label == null) {
+                 label = r.activityInfo.packageName;
+             }
+             headerMap.put(label, packageName);
+         }
+         i.setAction("org.omnirom.DaylightHeaderPack1");
+         for (ResolveInfo r : packageManager.queryIntentActivities(i, 0)) {
+             String packageName = r.activityInfo.packageName;
+             String label = r.activityInfo.loadLabel(getActivity().getPackageManager()).toString();
+             if (r.activityInfo.name.endsWith(".theme")) {
+                 continue;
+             }
+             if (label == null) {
+                 label = packageName;
+             }
+             headerMap.put(label, packageName  + "/" + r.activityInfo.name);
+         }
+         List<String> labelList = new ArrayList<String>();
+         labelList.addAll(headerMap.keySet());
+         Collections.sort(labelList);
+         for (String label : labelList) {
+             entries.add(label);
+             values.add(headerMap.get(label));
+         }
+     }
+    
     @Override
     public int getMetricsCategory() {
         return MetricsProto.MetricsEvent.BEAST_SETTINGS;

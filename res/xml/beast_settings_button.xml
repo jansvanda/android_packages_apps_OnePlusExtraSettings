@@ -18,10 +18,18 @@
         android:title="@string/button_title"
         xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
-    <Preference
-        android:key="volume_key"
-        android:fragment="com.beast.settings.fragments.VolumeRockerSettings"
-        android:title="@string/volume_title" />
+   
+
+    
+   <PreferenceCategory
+    android:title="@string/vol_button_cat">
+        <Preference
+                android:key="volume_key"
+                android:fragment="com.beast.settings.fragments.VolumeRockerSettings"
+                android:title="@string/volume_title" />
+
+  </PreferenceCategory>
+  
 
     <PreferenceCategory
         android:key="hardware_keys"

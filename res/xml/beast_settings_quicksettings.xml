@@ -92,7 +92,8 @@
              android:title="@string/status_bar_custom_header_shadow_title"
              android:summary="@string/status_bar_custom_header_shadow_summary"
              android:max="100"
-             android:min="0"
+             settings:min="0"
+             settings:units=""
              android:persistent="false"
              android:defaultValue="0" 
              android:dependency="status_bar_custom_header" />
