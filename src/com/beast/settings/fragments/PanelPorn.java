@@ -29,58 +29,58 @@ import com.android.settings.SettingsPreferenceFragment;
 public class PanelPorn extends SettingsPreferenceFragment implements
 OnPreferenceChangeListener {
 
-    private ListPreference mVolumeDialogStroke;
-    private Preference mVolumeDialogStrokeColor;
-    private Preference mVolumeDialogStrokeThickness;
-    private Preference mVolumeDialogDashWidth;
-    private Preference mVolumeDialogDashGap;
+    // private ListPreference mVolumeDialogStroke;
+    // private Preference mVolumeDialogStrokeColor;
+    // private Preference mVolumeDialogStrokeThickness;
+    // private Preference mVolumeDialogDashWidth;
+    // private Preference mVolumeDialogDashGap;
 
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-        addPreferencesFromResource(R.xml.beast_settings_transparent);
+    // addPreferencesFromResource(R.xml.beast_settings_transparent);
 
-     mVolumeDialogStroke =
-              (ListPreference) findPreference(Settings.System.VOLUME_DIALOG_STROKE);
-      mVolumeDialogStroke.setOnPreferenceChangeListener(this);
-      mVolumeDialogStrokeColor = findPreference(Settings.System.VOLUME_DIALOG_STROKE_COLOR);
-      mVolumeDialogStrokeThickness =
-              findPreference(Settings.System.VOLUME_DIALOG_STROKE_THICKNESS);
-      mVolumeDialogDashWidth = findPreference(Settings.System.VOLUME_DIALOG_STROKE_DASH_WIDTH);
-      mVolumeDialogDashGap = findPreference(Settings.System.VOLUME_DIALOG_STROKE_DASH_GAP);
-      updateVolumeDialogDependencies(mVolumeDialogStroke.getValue());
+    //  mVolumeDialogStroke =
+    //           (ListPreference) findPreference(Settings.System.VOLUME_DIALOG_STROKE);
+    //   mVolumeDialogStroke.setOnPreferenceChangeListener(this);
+    //   mVolumeDialogStrokeColor = findPreference(Settings.System.VOLUME_DIALOG_STROKE_COLOR);
+    //   mVolumeDialogStrokeThickness =
+    //           findPreference(Settings.System.VOLUME_DIALOG_STROKE_THICKNESS);
+    //   mVolumeDialogDashWidth = findPreference(Settings.System.VOLUME_DIALOG_STROKE_DASH_WIDTH);
+    //   mVolumeDialogDashGap = findPreference(Settings.System.VOLUME_DIALOG_STROKE_DASH_GAP);
+    //   updateVolumeDialogDependencies(mVolumeDialogStroke.getValue());
 
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object objValue) {
-        if (preference == mVolumeDialogStroke) {
-            updateVolumeDialogDependencies((String) objValue);
-            return true;
-        } else {
-            return false;
-        }
+        // if (preference == mVolumeDialogStroke) {
+        //     updateVolumeDialogDependencies((String) objValue);
+        //     return true;
+        // } else {
+        //     return false;
+        // }
     }
 
     private void updateVolumeDialogDependencies(String volumeDialogStroke) {
-      if (volumeDialogStroke.equals("0")) {
-          mVolumeDialogStrokeColor.setEnabled(false);
-          mVolumeDialogStrokeThickness.setEnabled(false);
-          mVolumeDialogDashWidth.setEnabled(false);
-          mVolumeDialogDashGap.setEnabled(false);
-      } else if (volumeDialogStroke.equals("1")) {
-          mVolumeDialogStrokeColor.setEnabled(false);
-          mVolumeDialogStrokeThickness.setEnabled(true);
-          mVolumeDialogDashWidth.setEnabled(true);
-          mVolumeDialogDashGap.setEnabled(true);
-      } else {
-          mVolumeDialogStrokeColor.setEnabled(true);
-          mVolumeDialogStrokeThickness.setEnabled(true);
-          mVolumeDialogDashWidth.setEnabled(true);
-          mVolumeDialogDashGap.setEnabled(true);
-      }
-      }
+    //   if (volumeDialogStroke.equals("0")) {
+    //       mVolumeDialogStrokeColor.setEnabled(false);
+    //       mVolumeDialogStrokeThickness.setEnabled(false);
+    //       mVolumeDialogDashWidth.setEnabled(false);
+    //       mVolumeDialogDashGap.setEnabled(false);
+    //   } else if (volumeDialogStroke.equals("1")) {
+    //       mVolumeDialogStrokeColor.setEnabled(false);
+    //       mVolumeDialogStrokeThickness.setEnabled(true);
+    //       mVolumeDialogDashWidth.setEnabled(true);
+    //       mVolumeDialogDashGap.setEnabled(true);
+    //   } else {
+    //       mVolumeDialogStrokeColor.setEnabled(true);
+    //       mVolumeDialogStrokeThickness.setEnabled(true);
+    //       mVolumeDialogDashWidth.setEnabled(true);
+    //       mVolumeDialogDashGap.setEnabled(true);
+    //   }
+    }
 
     @Override
     public int getMetricsCategory() {

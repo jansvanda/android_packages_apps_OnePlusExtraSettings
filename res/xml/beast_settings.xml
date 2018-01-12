@@ -102,11 +102,11 @@
             android:title="@string/recents_title"
             android:fragment="com.beast.settings.fragments.RecentsSettings"/>	
         
-        <!-- PanelPorn -->
+        <!-- PanelPorn
         <Preference
             android:key="panelporn_category"
             android:title="@string/panelporn_title"
-            android:fragment="com.beast.settings.fragments.PanelPorn"/>	
+            android:fragment="com.beast.settings.fragments.PanelPorn"/>	 -->
 
         <!-- UI-->
         <Preference

@@ -17,7 +17,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
-  <PreferenceCategory
+  <!-- <PreferenceCategory
          android:title="@string/power">
  
          <com.beast.settings.preferences.CustomSeekBarPreference
@@ -95,5 +95,5 @@
             settings:units=""
             android:defaultValue="10" />
 
-    </PreferenceCategory>
+    </PreferenceCategory> -->
 </PreferenceScreen>
