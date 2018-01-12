@@ -61,6 +61,8 @@ OnPreferenceChangeListener {
         // } else {
         //     return false;
         // }
+
+        return false;
     }
 
     private void updateVolumeDialogDependencies(String volumeDialogStroke) {

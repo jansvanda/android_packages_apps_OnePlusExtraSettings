@@ -93,7 +93,7 @@
              android:summary="@string/status_bar_custom_header_shadow_summary"
              android:max="100"
              settings:min="0"
-             settings:units=""
+             settings:units="@string/unit_percent"
              android:persistent="false"
              android:defaultValue="0" 
              android:dependency="status_bar_custom_header" />
