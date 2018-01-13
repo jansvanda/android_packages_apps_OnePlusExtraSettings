@@ -211,8 +211,14 @@
     <string name="network_cat_misc">Network traffic</string>
     <string name="icon_cat_misc">Icon control</string>
     <string name="action_cat_misc">Statusbar action</string>
-    <string name="batterysaver_cat_misc">Batterysaver</string>
+    <string name="batterysaver_cat_misc">Battery saver</string>
     <string name="tuner_cat_misc">System tuner</string>
+    <string name="ticker_cat_misc">Ticker</string>
+    <string name="logo_cat_misc">Logo</string>
+    <string name="gestureany_cat_misc">Gesture Anywhere</string>
+    <string name="screenshot_cat_misc">Three finger screenshot</string>
+    <string name="jumpcamera_cat_misc">Misc gestures</string>
+    <string name="advance_cat_misc">Advanced Battery options</string>
 
     <!-- StatusBar weather settings -->
     <string name="statusbar_weather_title">Status bar weather</string>
@@ -332,9 +338,10 @@
     <string name="no_iconpacks_summary">No icon packs installed</string>
     <string name="dialog_pick_iconpack_title">Pick icon pack</string>
     <string name="default_iconpack_title">Default icons</string>
+    <string name="gesture_preference">AOSP Gestures</string>
 
  <!-- Gesture Anywhere -->
-    <string name="gesture_anywhere_title">Gesture Anywhere</string>
+    <string name="gesture_anywhere_title">Gestures</string>
     <string name="gesture_anywhere_enabled_title">Gesture Anywhere</string>
     <string name="gesture_anywhere_enabled_summary">Enable the Gesture Anywhere feature</string>
     <string name="gesture_anywhere_position_title">Location</string>

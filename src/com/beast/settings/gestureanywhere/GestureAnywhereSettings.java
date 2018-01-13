@@ -20,7 +20,7 @@ import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.UserHandle;
-import android.support.v7.preference.ListPreference;
+import android.support.v7.preference.ListPreference; 
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceCategory;
 import android.support.v7.preference.PreferenceScreen;
@@ -28,8 +28,10 @@ import android.support.v7.preference.Preference.OnPreferenceChangeListener;
 import android.support.v14.preference.SwitchPreference;
 import android.provider.Settings;
 import android.view.Gravity;
+import android.content.ContentResolver; 
 import android.util.Log;
 
+import com.android.internal.util.beast.BeastUtils; 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.beast.settings.preferences.CustomSeekBarPreference;
@@ -46,12 +48,14 @@ public class GestureAnywhereSettings extends SettingsPreferenceFragment implemen
     private static final String KEY_TRIGGER_WIDTH = "gesture_anywhere_trigger_width";
     private static final String KEY_TRIGGER_TOP = "gesture_anywhere_trigger_top";
     private static final String KEY_TRIGGER_BOTTOM = "gesture_anywhere_trigger_bottom";
+    private static final String TORCH_POWER_BUTTON_GESTURE = "torch_power_button_gesture";
 
     private SwitchPreference mEnabledPref;
     private ListPreference mPositionPref;
     private CustomSeekBarPreference mTriggerWidthPref;
     private CustomSeekBarPreference mTriggerTopPref;
     private CustomSeekBarPreference mTriggerBottomPref;
+    private ListPreference mTorchPowerButton;
 
     private CharSequence mPreviousTitle;
 
@@ -65,13 +69,29 @@ public class GestureAnywhereSettings extends SettingsPreferenceFragment implemen
         super.onCreate(savedInstanceState);
 
         addPreferencesFromResource(R.xml.gesture_anywhere);
+         
+        PreferenceScreen prefSet = getPreferenceScreen();
 
-        mEnabledPref = (SwitchPreference) findPreference(KEY_ENABLED);
+                mEnabledPref = (SwitchPreference) prefSet.findPreference(KEY_ENABLED);
         mEnabledPref.setChecked((Settings.System.getInt(getContentResolver(),
                 Settings.System.GESTURE_ANYWHERE_ENABLED, 0) == 1));
         mEnabledPref.setOnPreferenceChangeListener(this);
 
-        PreferenceScreen prefSet = getPreferenceScreen();
+        if (!BeastUtils.deviceHasFlashlight(getContext())) {
+                Preference toRemove = prefSet.findPreference(TORCH_POWER_BUTTON_GESTURE);
+                if (toRemove != null) {
+                    prefSet.removePreference(toRemove);
+                }
+            } else {
+                mTorchPowerButton = (ListPreference) prefSet.findPreference(TORCH_POWER_BUTTON_GESTURE);
+                int mTorchPowerButtonValue = Settings.Secure.getInt(getContentResolver(),
+                        Settings.Secure.TORCH_POWER_BUTTON_GESTURE, 0);
+                mTorchPowerButton.setValue(Integer.toString(mTorchPowerButtonValue));
+                mTorchPowerButton.setSummary(mTorchPowerButton.getEntry());
+                mTorchPowerButton.setOnPreferenceChangeListener(this);
+            }
+
+
         mPositionPref = (ListPreference) prefSet.findPreference(KEY_POSITION);
         mPositionPref.setOnPreferenceChangeListener(this);
         int position = Settings.System.getInt(getContentResolver(),
@@ -122,7 +142,20 @@ public class GestureAnywhereSettings extends SettingsPreferenceFragment implemen
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        if (preference == mPositionPref) {
+         if (preference == mTorchPowerButton) {
+            int mTorchPowerButtonValue = Integer.valueOf((String) newValue);
+            int index = mTorchPowerButton.findIndexOfValue((String) newValue);
+            mTorchPowerButton.setSummary(
+                    mTorchPowerButton.getEntries()[index]);
+            Settings.Secure.putInt(getContentResolver(), Settings.Secure.TORCH_POWER_BUTTON_GESTURE,
+                    mTorchPowerButtonValue);
+            if (mTorchPowerButtonValue == 1) {
+                //if doubletap for torch is enabled, switch off double tap for camera
+                Settings.Secure.putInt(getContentResolver(), Settings.Secure.CAMERA_DOUBLE_TAP_POWER_GESTURE_DISABLED,
+                        1);
+            }
+            return true;
+        } else if (preference == mPositionPref) {
             int position = Integer.valueOf((String) newValue);
             updatePositionSummary(position);
             return true;
