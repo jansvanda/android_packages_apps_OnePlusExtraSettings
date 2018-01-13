@@ -18,6 +18,9 @@
     android:title="@string/powermenu_title"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
   
+      <PreferenceCategory
+            android:title="@string/advance_cat_misc"  />
+
         <com.beast.settings.preferences.SystemSettingSwitchPreference
             android:key="sensor_block"
             android:title="@string/sensor_block_title"

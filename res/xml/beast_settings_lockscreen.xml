@@ -54,8 +54,6 @@
          android:summaryOff="@string/lockscreen_rotation_summary_off"
          android:defaultValue="false" />    </PreferenceCategory>
     <SwitchPreference android:key="fingerprint_success_vib" android:title="@string/fprint_sucess_vib_title" android:summary="@string/fprint_sucess_vib_summary" android:persistent="false" />
-     <ListPreference android:key="torch_power_button_gesture" android:title="@string/torch_power_button_gesture_title" android:entries="@array/torch_power_button_gesture_entries" android:entryValues="@array/torch_power_button_gesture_values" />
-    <Preference android:key="gestures_dashboard" android:title="@string/gesture_preference_nos" android:fragment="com.android.settings.gestures.GestureSettings" />
     <PreferenceCategory android:key="lockscreen_shortcut" android:title="@string/lockscreen_shortcut">
         <Preference android:title="@string/lockscreen_tuner_title">
             <intent android:action="android.intent.action.MAIN" android:targetPackage="com.android.systemui" android:targetClass="com.android.systemui.tuner.LockscreenActivity" />
