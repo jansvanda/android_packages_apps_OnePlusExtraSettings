@@ -216,6 +216,14 @@ public class QuickSettings extends SettingsPreferenceFragment implements
         }
     }
 
+    public static void reset(Context mContext) {
+        ContentResolver resolver = mContext.getContentResolver();    
+        Settings.System.putIntForUser(resolver,
+                Settings.System.QS_QUICKBAR_SCROLL_ENABLED, 0, UserHandle.USER_CURRENT);    
+        Settings.System.putIntForUser(resolver,
+                Settings.System.QS_TILE_TITLE_VISIBILITY, 1, UserHandle.USER_CURRENT);
+    }
+
     
     @Override
     public int getMetricsCategory() {

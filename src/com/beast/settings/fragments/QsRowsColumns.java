@@ -67,7 +67,7 @@ public class QsRowsColumns extends SettingsPreferenceFragment implements
         mQsColumnsLand.setValue(value);
         mQsColumnsLand.setOnPreferenceChangeListener(this);
 
-        value = Settings.Secure.getInt(resolver, Settings.Secure.QQS_COUNT, 8);
+        value = Settings.Secure.getInt(resolver, Settings.Secure.QQS_COUNT, 6);
         mSysuiQqsCount = (CustomSeekBarPreference) findPreference("sysui_qqs_count_key");
         mSysuiQqsCount.setValue(value);
         mSysuiQqsCount.setOnPreferenceChangeListener(this);
