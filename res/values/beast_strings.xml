@@ -126,10 +126,10 @@
     <string name="save">Save</string>
 
     <string name="qs_small_tiles_title">Small QS tiles</string>
-    <string name="stock_recents_title">Stock Recents</string>
+    <string name="stock_recents_title">Stock recents</string>
 
     <!-- Recents memory bar -->
-    <string name="systemui_recents_mem_display_title">Show memory bar</string>
+    <string name="systemui_recents_mem_display_title">Memory bar</string>
     <string name="systemui_recents_mem_display_summary">Display RAM usage under recents view</string>
 
     <!-- Color Picker -->
@@ -211,13 +211,13 @@
     <string name="network_cat_misc">Network traffic</string>
     <string name="icon_cat_misc">Icon control</string>
     <string name="action_cat_misc">Statusbar action</string>
-    <string name="batterysaver_cat_misc">Batterysaver</string>
+    <string name="batterysaver_cat_misc">Battery saver</string>
     <string name="tuner_cat_misc">System tuner</string>
     <string name="ticker_cat_misc">Ticker</string>
     <string name="logo_cat_misc">Logo</string>
     <string name="gestureany_cat_misc">Gesture Anywhere</string>
     <string name="screenshot_cat_misc">Three finger screenshot</string>
-    <string name="jumpcamera_cat_misc">Misc gestures</string>
+    <string name="jumpcamera_cat_misc">Misc</string>
     <string name="advance_cat_misc">Advanced Battery options</string>
 
     <!-- StatusBar weather settings -->
@@ -338,7 +338,7 @@
     <string name="no_iconpacks_summary">No icon packs installed</string>
     <string name="dialog_pick_iconpack_title">Pick icon pack</string>
     <string name="default_iconpack_title">Default icons</string>
-    <string name="gesture_preference">AOSP Gestures</string>
+    <string name="gesture_preference">Jump to camera</string>
 
  <!-- Gesture Anywhere -->
     <string name="gesture_anywhere_title">Gestures</string>
@@ -452,7 +452,7 @@
     <string name="weather_icon_pack_title">Condition icon pack</string>
 
     <!-- Statusbar Tuner -->
-    <string name="statusbar_items_title">Statusbar items</string>
+    <string name="statusbar_items_title">Statusbar icons</string>
 
     <!-- Power notification controls -->
     <string name="power_notification_title">Power notification controls</string>
@@ -548,11 +548,11 @@
     <string name="button_brightness_title">Backlight</string>
 
     <!-- Wakeup options -->
-    <string name="wakeup_when_plugged_unplugged_title">Wake up on charge</string>
+    <string name="wakeup_when_plugged_unplugged_title">Wake on plug</string>
     <string name="wakeup_when_plugged_unplugged_summary">Wake up device if charger is plugged/unplugged.</string>
 
     <!-- Immersive Recents -->
-    <string name="immersive_recents_title">Immersive Recents</string>
+    <string name="immersive_recents_title">Immersive recents</string>
     <string name="immersive_recents_summary">Change the view of the recents screen</string>
     <string name="immersive_recents_dialog_title">Select recents view</string>
     <string name="immersive_recents_default">Default</string>
@@ -624,7 +624,7 @@
     <string name="smart_pulldown_dismissable">No dismissable</string>
     <string name="smart_pulldown_ongoing">No ongoing</string>
 
-    <string name="notification_light_settings">Notifications light</string>
+    <string name="notification_light_settings">Notification light</string>
 
     <!-- ADB debugging notifications -->
     <string name="adb_notify">ADB notification</string>

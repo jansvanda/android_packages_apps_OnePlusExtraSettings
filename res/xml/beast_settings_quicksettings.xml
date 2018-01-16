@@ -31,7 +31,7 @@
         android:key="qs_quickbar_scroll_enabled"
         android:title="@string/qqs_scroll_title"
         android:summary="@string/qqs_scroll_summary"
-        android:defaultValue="true"/>
+        android:defaultValue="false"/>
 
     </PreferenceCategory>
 
@@ -113,7 +113,7 @@
   <com.beast.settings.preferences.SystemSettingSwitchPreference
       android:key="qs_tile_title_visibility"
       android:title="@string/qs_tile_title_visibility_title"
-      android:defaultValue="false" />
+      android:defaultValue="true" />
 
     <com.beast.settings.preferences.SystemSettingSwitchPreference
         android:key="qs_show_brightness_icon"
