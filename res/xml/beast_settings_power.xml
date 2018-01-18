@@ -57,12 +57,12 @@
             
          <com.beast.settings.preferences.SystemSettingSwitchPreference
             android:key="global_actions_restartui"
-            android:title="@string/powermenu_sofreboot"
+            android:title="@string/powermenu_restartui"
             android:defaultValue="false" />
 
          <com.beast.settings.preferences.SystemSettingSwitchPreference
             android:key="global_actions_softreboot"
-            android:title="@string/powermenu_restartui"
+            android:title="@string/powermenu_sofreboot"
             android:defaultValue="false" />
        
 
