@@ -416,8 +416,8 @@
     <string name="keyboard_ime_title">Keyboard</string>
     <string name="dlg_ok">Okay</string>
 
-    <string name="powermenu_sofreboot">Softreboot</string>
-    <string name="powermenu_restartui">Restart UI</string>
+    <string name="powermenu_sofreboot">Hot Reboot</string>
+    <string name="powermenu_restartui">Restart SystemUI</string>
 
      <!-- Keyboard and IME  -->
     <string name="disable_fullscreen_keyboard_title">Disable fullscreen keyboard</string>
