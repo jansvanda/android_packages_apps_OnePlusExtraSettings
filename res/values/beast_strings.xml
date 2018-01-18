@@ -352,11 +352,29 @@
    <string name="show_carrier_statusbar">Statusbar only</string>
    <string name="show_carrier_enabled">Lockscreen &amp; statusbar</string>
 
- <!-- Hide Lockscreen clock & date -->
- <string name="hide_lockscreen_items_title">Lockscreen items</string>
- <string name="hide_lockscreen_clock_title">Show lockscreen clock</string>
- <string name="hide_lockscreen_date_title">Show lockscreen date</string>
+    <!-- Hide Lockscreen clock & date -->
+    <string name="hide_lockscreen_items_title">Lockscreen items</string>
+    <string name="hide_lockscreen_clock_title">Show lockscreen clock</string>
+     <string name="hide_lockscreen_date_title">Show lockscreen date</string>
+     <string name="lock_style_cat">Lockscreen style</string>
 
+    <!-- Lock Clock Fonts -->
+    <string name="lock_clock_font_title">Font options</string>
+    <string name="lock_clock_font_summary">Change the default font of the lockscreen clock widget</string>
+    <string name="lock_clock_font_dialog_title">Select lock clock font</string>
+    <string name="lock_clock_font_stock">Normal (default)</string>
+    <string name="lock_clock_font_bold">Bold</string>
+    <string name="lock_clock_font_italic">Italic</string>
+    <string name="lock_clock_font_bold_italic">Bold Italic</string>
+    <string name="lock_clock_font_light_italic">Light Italic</string>
+    <string name="lock_clock_font_thin_italic">Thin Italic</string>
+    <string name="lock_clock_font_condensed_normal">Condensed</string>
+    <string name="lock_clock_font_condensed_italic">Condensed Italic</string>
+    <string name="lock_clock_font_condensed_bold">Condensed Bold</string>
+    <string name="lock_clock_font_condensed_bold_italic">Condensed Bold Italic</string>
+    <string name="lock_clock_font_medium_normal">Medium</string>
+    <string name="lock_clock_font_medium_italic">Medium Italic</string>
+ 
  <!-- Gesture Anywhere -->
     <string name="gesture_anywhere_title">Gestures</string>
     <string name="gesture_anywhere_enabled_title">Gesture Anywhere</string>

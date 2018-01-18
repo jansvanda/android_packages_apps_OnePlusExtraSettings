@@ -30,11 +30,11 @@
 
  <PreferenceCategory
             android:title="@string/jumpcamera_cat_misc"  />
-
+<!-- 
     <Preference
         android:key="gestures_dashboard"
         android:title="@string/gesture_preference"
-        android:fragment="com.android.settings.gestures.GestureSettings"/>
+        android:fragment="com.android.settings.gestures.GestureSettings"/> -->
 
 	 <ListPreference
         android:key="torch_power_button_gesture"
