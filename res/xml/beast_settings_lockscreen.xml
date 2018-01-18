@@ -20,6 +20,26 @@
         <com.beast.settings.preferences.SystemSettingSwitchPreference android:key="lockscreen_battery_info" android:title="@string/lockscreen_battery_info_title" android:summary="@string/lockscreen_battery_info_summary" android:defaultValue="true" />
         <com.beast.settings.preferences.SystemSettingSwitchPreference android:key="lockscreen_media_metadata" android:title="@string/media_art_title" android:summary="@string/media_art_summary" android:defaultValue="false" />
         <Preference android:key="lockscreen_weather" android:title="@string/lock_screen_weather_settings_title" android:fragment="com.beast.settings.fragments.LockScreenWeatherSettings" />
+    
+  <!-- Hide Lockscreen clock & date -->
+    <PreferenceCategory
+        android:key="hide_lockscreen_items_category"
+        android:title="@string/hide_lockscreen_items_title" />
+     <com.aosip.owlsnest.preference.SystemSettingSwitchPreference
+        android:key="hide_lockscreen_clock"
+        android:title="@string/hide_lockscreen_clock_title"
+        android:defaultValue="true" />
+     <com.aosip.owlsnest.preference.SystemSettingSwitchPreference
+        android:key="hide_lockscreen_date"
+        android:title="@string/hide_lockscreen_date_title"
+        android:defaultValue="true" />
+  
+      <com.beast.settings.preferences.SystemSettingSwitchPreference
+             android:key="lockscreen_visualizer"
+             android:title="@string/lockscreen_visualizer_title"
+             android:summary="@string/lockscreen_visualizer_summary"
+             android:defaultValue="true" />
+    
     <com.beast.settings.preferences.SystemSettingSwitchPreference
            android:key="lock_screen_custom_notif"
            android:title="@string/lockscreen_maxnotif_title"
@@ -33,11 +53,6 @@
            settings:units=""
            android:persistent="false"
            android:dependency="lock_screen_custom_notif" />
-      <com.beast.settings.preferences.SystemSettingSwitchPreference
-             android:key="lockscreen_visualizer"
-             android:title="@string/lockscreen_visualizer_title"
-             android:summary="@string/lockscreen_visualizer_summary"
-             android:defaultValue="true" />
    
     </PreferenceCategory>
     <PreferenceCategory android:key="lockscreen_actions" android:title="@string/lockscreen_actions">
@@ -52,7 +67,7 @@
          android:title="@string/lockscreen_rotation_title"
          android:summaryOn="@string/lockscreen_rotation_summary_on"
          android:summaryOff="@string/lockscreen_rotation_summary_off"
-         android:defaultValue="false" />    </PreferenceCategory>
+         android:defaultValue="true" />    </PreferenceCategory>
     <SwitchPreference android:key="fingerprint_success_vib" android:title="@string/fprint_sucess_vib_title" android:summary="@string/fprint_sucess_vib_summary" android:persistent="false" />
     <PreferenceCategory android:key="lockscreen_shortcut" android:title="@string/lockscreen_shortcut">
         <Preference android:title="@string/lockscreen_tuner_title">

@@ -36,6 +36,7 @@
    <PreferenceCategory
        android:key="carrier_label_category"
        android:title="@string/carrier_category">
+       
        <com.beast.settings.preferences.SystemSettingListPreference
            android:key="status_bar_show_carrier"
            android:title="@string/show_carrier_title"
