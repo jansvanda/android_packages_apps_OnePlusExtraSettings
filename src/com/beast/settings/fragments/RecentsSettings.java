@@ -90,14 +90,14 @@ public class RecentsSettings extends SettingsPreferenceFragment implements
         addPreferencesFromResource(R.xml.beast_settings_recents);
         ContentResolver resolver = getActivity().getContentResolver();
 
-      //  mStockIconPacks = (Preference) findPreference("recents_icon_pack");
-        mSlimToggle = (SwitchPreference) findPreference("use_slim_recents");
-        boolean enabled = Settings.System.getIntForUser(
-                resolver, Settings.System.USE_SLIM_RECENTS, 0,
-                UserHandle.USER_CURRENT) == 1;
-        mSlimToggle.setChecked(enabled);
-      //  mStockIconPacks.setEnabled(!enabled);
-        mSlimToggle.setOnPreferenceChangeListener(this);
+    //   //  mStockIconPacks = (Preference) findPreference("recents_icon_pack");
+    //     mSlimToggle = (SwitchPreference) findPreference("use_slim_recents");
+    //     boolean enabled = Settings.System.getIntForUser(
+    //             resolver, Settings.System.USE_SLIM_RECENTS, 0,
+    //             UserHandle.USER_CURRENT) == 1;
+    //     mSlimToggle.setChecked(enabled);
+    //   //  mStockIconPacks.setEnabled(!enabled);
+    //     mSlimToggle.setOnPreferenceChangeListener(this);
 
         mImmersiveRecents = (ListPreference) findPreference(IMMERSIVE_RECENTS);
         mImmersiveRecents.setValue(String.valueOf(Settings.System.getInt(
