@@ -42,6 +42,7 @@ import com.android.settings.Utils;
 import android.provider.Settings;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
+import net.margaritov.preference.colorpicker.ColorPickerPreference;
 
 public class LockScreenSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
@@ -70,7 +71,6 @@ public class LockScreenSettings extends SettingsPreferenceFragment implements
     private SwitchPreference mFpKeystore;
     private SwitchPreference mVisualization;
     private SeekBarPreference mMaxKeyguardNotifConfig;
-    ListPreference mLockClockFonts;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -119,12 +119,6 @@ public class LockScreenSettings extends SettingsPreferenceFragment implements
                 mVisualization.setOnPreferenceChangeListener(this);
          }
     
-      mLockClockFonts = (ListPreference) findPreference(LOCK_CLOCK_FONTS);
-        mLockClockFonts.setValue(String.valueOf(Settings.System.getInt(
-                getContentResolver(), Settings.System.LOCK_CLOCK_FONTS, 0)));
-        mLockClockFonts.setSummary(mLockClockFonts.getEntry());
-        mLockClockFonts.setOnPreferenceChangeListener(this);
-
      mLockClockFonts = (ListPreference) findPreference(LOCK_CLOCK_FONTS);
      mLockClockFonts.setValue(String.valueOf(Settings.System.getInt(
              getContentResolver(), Settings.System.LOCK_CLOCK_FONTS, 4)));
@@ -220,6 +214,7 @@ public class LockScreenSettings extends SettingsPreferenceFragment implements
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
                     Settings.System.LOCKSCREEN_CLOCK_DATE_COLOR, intHex);
             return true;
+        }
         return false;
     }
 
