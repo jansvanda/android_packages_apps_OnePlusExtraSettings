@@ -76,7 +76,7 @@ public class RecentsSettings extends SettingsPreferenceFragment implements
     private AlertDialog mDialog;
     private ListView mListView;
 
-    private SwitchPreference mSlimToggle;
+    // private SwitchPreference mSlimToggle;
     private Preference mStockIconPacks;
 
     private ListPreference mImmersiveRecents;
@@ -120,15 +120,17 @@ public class RecentsSettings extends SettingsPreferenceFragment implements
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         ContentResolver resolver = getActivity().getContentResolver();
-        if (preference == mSlimToggle) {
-            boolean value = (Boolean) newValue;
-            Settings.System.putIntForUser(getActivity().getContentResolver(),
-                    Settings.System.USE_SLIM_RECENTS, value ? 1 : 0,
-                    UserHandle.USER_CURRENT);
-            mSlimToggle.setChecked(value);
-           // mStockIconPacks.setEnabled(!value);
-            return true;
-        } else if (preference == mImmersiveRecents) {
+        // if (preference == mSlimToggle) {
+        //     boolean value = (Boolean) newValue;
+        //     Settings.System.putIntForUser(getActivity().getContentResolver(),
+        //             Settings.System.USE_SLIM_RECENTS, value ? 1 : 0,
+        //             UserHandle.USER_CURRENT);
+        //     mSlimToggle.setChecked(value);
+        //    // mStockIconPacks.setEnabled(!value);
+        //     return true;
+        // } else 
+        
+        if (preference == mImmersiveRecents) {
             Settings.System.putInt(getContentResolver(), Settings.System.IMMERSIVE_RECENTS,
                     Integer.valueOf((String) newValue));
             mImmersiveRecents.setValue(String.valueOf(newValue));
