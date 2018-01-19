@@ -51,6 +51,19 @@ public class LockScreenSettings extends SettingsPreferenceFragment implements
     private static final String LOCKSCREEN_MAX_NOTIF_CONFIG = "lockscreen_max_notif_cofig";
     private static final String LOCKSCREEN_VISUALIZATION = "lockscreen_visualizer";
     private static final String LOCK_CLOCK_FONTS = "lock_clock_fonts";
+    private static final String TAG = "LockscreenColorsFonts";
+    private static final String LOCKSCREEN_OWNER_INFO_COLOR = "lockscreen_owner_info_color";
+    private static final String LOCKSCREEN_ALARM_COLOR = "lockscreen_alarm_color";
+    private static final String LOCKSCREEN_CLOCK_COLOR = "lockscreen_clock_color";
+    private static final String LOCKSCREEN_CLOCK_DATE_COLOR = "lockscreen_clock_date_color";
+
+    static final int DEFAULT = 0xffffffff;
+
+    private ColorPickerPreference mLockscreenOwnerInfoColorPicker;
+    private ColorPickerPreference mLockscreenAlarmColorPicker;
+    private ColorPickerPreference mLockscreenClockColorPicker;
+    private ColorPickerPreference mLockscreenClockDateColorPicker;
+    ListPreference mLockClockFonts;
 
     private FingerprintManager mFingerprintManager;
     private SwitchPreference mFingerprintVib;
@@ -67,6 +80,9 @@ public class LockScreenSettings extends SettingsPreferenceFragment implements
         ContentResolver resolver = getActivity().getContentResolver();
         final PreferenceScreen prefScreen = getPreferenceScreen();
         Resources resources = getResources();
+
+       int intColor;
+       String hexColor;
 
       mFingerprintManager = (FingerprintManager) getActivity().getSystemService(Context.FINGERPRINT_SERVICE);
       mFpKeystore = (SwitchPreference) findPreference(FP_UNLOCK_KEYSTORE);
@@ -108,6 +124,40 @@ public class LockScreenSettings extends SettingsPreferenceFragment implements
                 getContentResolver(), Settings.System.LOCK_CLOCK_FONTS, 0)));
         mLockClockFonts.setSummary(mLockClockFonts.getEntry());
         mLockClockFonts.setOnPreferenceChangeListener(this);
+
+     mLockClockFonts = (ListPreference) findPreference(LOCK_CLOCK_FONTS);
+     mLockClockFonts.setValue(String.valueOf(Settings.System.getInt(
+             getContentResolver(), Settings.System.LOCK_CLOCK_FONTS, 4)));
+     mLockClockFonts.setSummary(mLockClockFonts.getEntry());
+     mLockClockFonts.setOnPreferenceChangeListener(this);
+     mLockscreenOwnerInfoColorPicker = (ColorPickerPreference) findPreference(LOCKSCREEN_OWNER_INFO_COLOR);
+     mLockscreenOwnerInfoColorPicker.setOnPreferenceChangeListener(this);
+     intColor = Settings.System.getInt(getContentResolver(),
+                 Settings.System.LOCKSCREEN_OWNER_INFO_COLOR, DEFAULT);
+     hexColor = String.format("#%08x", (0xffffffff & intColor));
+     mLockscreenOwnerInfoColorPicker.setSummary(hexColor);
+     mLockscreenOwnerInfoColorPicker.setNewPreviewColor(intColor);
+     mLockscreenAlarmColorPicker = (ColorPickerPreference) findPreference(LOCKSCREEN_ALARM_COLOR);
+     mLockscreenAlarmColorPicker.setOnPreferenceChangeListener(this);
+     intColor = Settings.System.getInt(getContentResolver(),
+                 Settings.System.LOCKSCREEN_ALARM_COLOR, DEFAULT);
+     hexColor = String.format("#%08x", (0xffffffff & intColor));
+     mLockscreenAlarmColorPicker.setSummary(hexColor);
+     mLockscreenAlarmColorPicker.setNewPreviewColor(intColor);
+     mLockscreenClockColorPicker = (ColorPickerPreference) findPreference(LOCKSCREEN_CLOCK_COLOR);
+     mLockscreenClockColorPicker.setOnPreferenceChangeListener(this);
+     intColor = Settings.System.getInt(getContentResolver(),
+                 Settings.System.LOCKSCREEN_CLOCK_COLOR, DEFAULT);
+     hexColor = String.format("#%08x", (0xffffffff & intColor));
+     mLockscreenClockColorPicker.setSummary(hexColor);
+     mLockscreenClockColorPicker.setNewPreviewColor(intColor);
+     mLockscreenClockDateColorPicker = (ColorPickerPreference) findPreference(LOCKSCREEN_CLOCK_DATE_COLOR);
+     mLockscreenClockDateColorPicker.setOnPreferenceChangeListener(this);
+     intColor = Settings.System.getInt(getContentResolver(),
+                 Settings.System.LOCKSCREEN_CLOCK_DATE_COLOR, DEFAULT);
+     hexColor = String.format("#%08x", (0xffffffff & intColor));
+     mLockscreenClockDateColorPicker.setSummary(hexColor);
+     mLockscreenClockDateColorPicker.setNewPreviewColor(intColor);
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -138,7 +188,38 @@ public class LockScreenSettings extends SettingsPreferenceFragment implements
              mLockClockFonts.setValue(String.valueOf(newValue));
              mLockClockFonts.setSummary(mLockClockFonts.getEntry());
              return true;
-         }
+         } else  if (preference == mLockscreenOwnerInfoColorPicker) {
+            String hex = ColorPickerPreference.convertToARGB(
+                    Integer.valueOf(String.valueOf(newValue)));
+            preference.setSummary(hex);
+            int intHex = ColorPickerPreference.convertToColorInt(hex);
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+                    Settings.System.LOCKSCREEN_OWNER_INFO_COLOR, intHex);
+            return true;
+        } else if (preference == mLockscreenAlarmColorPicker) {
+            String hex = ColorPickerPreference.convertToARGB(
+                    Integer.valueOf(String.valueOf(newValue)));
+            preference.setSummary(hex);
+            int intHex = ColorPickerPreference.convertToColorInt(hex);
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+                    Settings.System.LOCKSCREEN_ALARM_COLOR, intHex);
+            return true;
+        } else if (preference == mLockscreenClockColorPicker) {
+            String hex = ColorPickerPreference.convertToARGB(
+                    Integer.valueOf(String.valueOf(newValue)));
+            preference.setSummary(hex);
+            int intHex = ColorPickerPreference.convertToColorInt(hex);
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+                    Settings.System.LOCKSCREEN_CLOCK_COLOR, intHex);
+            return true;
+        } else if (preference == mLockscreenClockDateColorPicker) {
+            String hex = ColorPickerPreference.convertToARGB(
+                    Integer.valueOf(String.valueOf(newValue)));
+            preference.setSummary(hex);
+            int intHex = ColorPickerPreference.convertToColorInt(hex);
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+                    Settings.System.LOCKSCREEN_CLOCK_DATE_COLOR, intHex);
+            return true;
         return false;
     }
 

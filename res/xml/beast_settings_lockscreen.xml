@@ -66,6 +66,24 @@
          android:entryValues="@array/lock_clock_fonts_values"
          android:summary="@string/lock_clock_font_summary"
         android:persistent="false" />
+
+    
+      <net.margaritov.preference.colorpicker.ColorPickerPreference
+          android:key="lockscreen_owner_info_color"
+          android:title="@string/lockscreen_owner_info_color"
+          android:defaultValue="0xffffffff" />
+       <net.margaritov.preference.colorpicker.ColorPickerPreference
+          android:key="lockscreen_alarm_color"
+          android:title="@string/lockscreen_alarm_color"
+          android:defaultValue="0xffffffff" />
+       <net.margaritov.preference.colorpicker.ColorPickerPreference
+          android:key="lockscreen_clock_color"
+          android:title="@string/lockscreen_clock_color"
+          android:defaultValue="0xffffffff" />
+       <net.margaritov.preference.colorpicker.ColorPickerPreference
+          android:key="lockscreen_clock_date_color"
+          android:title="@string/lockscreen_clock_date_color"
+          android:defaultValue="0xffffffff" />
         
     <PreferenceCategory android:key="lockscreen_actions" android:title="@string/lockscreen_actions">
             <com.beast.settings.preferences.SystemSettingSwitchPreference
