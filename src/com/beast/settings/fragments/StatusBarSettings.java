@@ -27,6 +27,13 @@ import android.text.Spannable;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+import android.view.WindowManagerGlobal;
+import android.view.IWindowManager;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import android.os.RemoteException;
+import android.os.ServiceManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 
 import java.util.Locale;
 import android.text.TextUtils;
@@ -53,7 +60,6 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
     private CustomSeekBarPreference mThreshold;
     private SystemSettingSwitchPreference mNetMonitor;
     private static final String TAG = "StatusbarBatteryStyle";
-    private static final String KEY_CUSTOM_CARRIER_LABEL = "custom_carrier_label";
  
     private static final String STATUS_BAR_BATTERY_SAVER_COLOR = "status_bar_battery_saver_color";
     private static final String CATEGORY_WEATHER = "weather_category";
@@ -61,14 +67,17 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
     private static final String DEFAULT_WEATHER_ICON_PACKAGE = "org.omnirom.omnijaws";
     private static final String WEATHER_SERVICE_PACKAGE = "org.omnirom.omnijaws";
     private static final String CHRONUS_ICON_PACK_INTENT = "com.dvtonder.chronus.ICON_PACK";
-    
+    private static final String SHOW_CARRIER_LABEL = "status_bar_show_carrier";
+    private static final String CUSTOM_CARRIER_LABEL = "custom_carrier_label";
+ 
+    private Preference mCustomCarrierLabel;
+    private ListPreference mShowCarrierLabel;
+    private String mCustomCarrierLabelText;
     private ColorPickerPreference mBatterySaverColor;
     private ListPreference mTickerMode;
     private ListPreference mLogoStyle;
     private ColorPickerPreference mStatusBarLogoColor;
     static final int DEFAULT_LOGO_COLOR = 0xff009688;
-    private Preference mCustomCarrierLabel;
-    private String mCustomCarrierLabelText;
     private ListPreference mWeatherIconPack;
     private PreferenceCategory mWeatherCategory;
 
@@ -124,9 +133,6 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
          mBatterySaverColor.setNewPreviewColor(batterySaverColor);
          mBatterySaverColor.setOnPreferenceChangeListener(this);
 
-        mCustomCarrierLabel = (Preference) findPreference(KEY_CUSTOM_CARRIER_LABEL);
-        updateCustomLabelTextSummary();
-
          mWeatherCategory = (PreferenceCategory) prefSet.findPreference(CATEGORY_WEATHER);
           if (mWeatherCategory != null && !isOmniJawsServiceInstalled()) {
               prefSet.removePreference(mWeatherCategory);
@@ -156,6 +162,16 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
               mWeatherIconPack.setSummary(mWeatherIconPack.getEntry());
               mWeatherIconPack.setOnPreferenceChangeListener(this);
           }
+
+        mShowCarrierLabel = (ListPreference) findPreference(SHOW_CARRIER_LABEL);
+        int showCarrierLabel = Settings.System.getInt(getContentResolver(),
+                Settings.System.STATUS_BAR_SHOW_CARRIER, 1);
+        mShowCarrierLabel.setValue(String.valueOf(showCarrierLabel));
+        mShowCarrierLabel.setSummary(mShowCarrierLabel.getEntry());
+        mShowCarrierLabel.setOnPreferenceChangeListener(this);
+  
+        mCustomCarrierLabel = (Preference) findPreference(CUSTOM_CARRIER_LABEL);
+        updateCustomLabelTextSummary();
  
          enableStatusBarBatteryDependents();
     
@@ -214,9 +230,55 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
             int valueIndex = mWeatherIconPack.findIndexOfValue(value);
             mWeatherIconPack.setSummary(mWeatherIconPack.getEntries()[valueIndex]);
             return true;     
-          }
+          } else  if (preference == mShowCarrierLabel) {
+             int showCarrierLabel = Integer.valueOf((String) objValue);
+             int index = mShowCarrierLabel.findIndexOfValue((String) objValue);
+             Settings.System.putInt(getContentResolver(), Settings.System.
+                     STATUS_BAR_SHOW_CARRIER, showCarrierLabel);
+             mShowCarrierLabel.setSummary(mShowCarrierLabel.getEntries()[index]);
+             return true;
+         }
         return false;
     }
+
+  private void updateCustomLabelTextSummary() {
+      mCustomCarrierLabelText = Settings.System.getString(
+              getContentResolver(), Settings.System.CUSTOM_CARRIER_LABEL);
+       if (TextUtils.isEmpty(mCustomCarrierLabelText)) {
+          mCustomCarrierLabel.setSummary(R.string.custom_carrier_label_notset);
+      } else {
+          mCustomCarrierLabel.setSummary(mCustomCarrierLabelText);
+      }
+  }
+  
+   @Override
+  public boolean onPreferenceTreeClick(final Preference preference) {
+      final ContentResolver resolver = getActivity().getContentResolver();
+      if (preference.getKey().equals(CUSTOM_CARRIER_LABEL)) {
+          AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+          alert.setTitle(R.string.custom_carrier_label_title);
+          alert.setMessage(R.string.custom_carrier_label_explain);
+           // Set an EditText view to get user input
+          final EditText input = new EditText(getActivity());
+          input.setText(TextUtils.isEmpty(mCustomCarrierLabelText) ? "" : mCustomCarrierLabelText);
+          input.setSelection(input.getText().length());
+          alert.setView(input);
+          alert.setPositiveButton(getString(android.R.string.ok),
+                  new DialogInterface.OnClickListener() {
+                      public void onClick(DialogInterface dialog, int whichButton) {
+                          String value = ((Spannable) input.getText()).toString().trim();
+                          Settings.System.putString(resolver, Settings.System.CUSTOM_CARRIER_LABEL, value);
+                          updateCustomLabelTextSummary();
+                          Intent i = new Intent();
+                          i.setAction(Intent.ACTION_CUSTOM_CARRIER_LABEL_CHANGED);
+                          getActivity().sendBroadcast(i);
+                      }
+                  });
+          alert.setNegativeButton(getString(android.R.string.cancel), null);
+          alert.show();
+      }
+      return super.onPreferenceTreeClick(preference);
+  }
 
  private boolean isOmniJawsServiceInstalled() {
        return BeastUtils.isAvailableApp(WEATHER_SERVICE_PACKAGE, getActivity());
@@ -280,45 +342,8 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
       @Override
       public boolean onPreferenceTreeClick(final Preference preference) {
           super.onPreferenceTreeClick(preference);
-          final ContentResolver resolver = getContentResolver();
-                if (preference.getKey().equals(KEY_CUSTOM_CARRIER_LABEL)) {
-                        AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-                        alert.setTitle(R.string.custom_carrier_label_title);
-                        alert.setMessage(R.string.custom_carrier_label_explain);
-                
-                        // Set an EditText view to get user input
-                        final EditText input = new EditText(getActivity());
-                        input.setText(TextUtils.isEmpty(mCustomCarrierLabelText) ? "" : mCustomCarrierLabelText);
-                        input.setSelection(input.getText().length());
-                        alert.setView(input);
-                        alert.setPositiveButton(getString(android.R.string.ok),
-                                new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int whichButton) {
-                                        String value = ((Spannable) input.getText()).toString().trim();
-                                        Settings.System.putString(resolver, Settings.System.CUSTOM_CARRIER_LABEL, value);
-                                        updateCustomLabelTextSummary();
-                                        Intent i = new Intent();
-                                        i.setAction(Intent.ACTION_CUSTOM_CARRIER_LABEL_CHANGED);
-                                        getActivity().sendBroadcast(i);
-                                        }
-                                });
-                        alert.setNegativeButton(getString(android.R.string.cancel), null);
-                        alert.show();
-                        return true;
-          }
-      
           return false;
       }
-
-   private void updateCustomLabelTextSummary() {
-      mCustomCarrierLabelText = Settings.System.getString(
-              getActivity().getContentResolver(), Settings.System.CUSTOM_CARRIER_LABEL);
-      if (TextUtils.isEmpty(mCustomCarrierLabelText)) {
-          mCustomCarrierLabel.setSummary(R.string.custom_carrier_label_notset);
-      } else {
-          mCustomCarrierLabel.setSummary(mCustomCarrierLabelText);
-        }
-  }
 
    private void enableStatusBarBatteryDependents() {
          mBatterySaverColor.setEnabled(true);
