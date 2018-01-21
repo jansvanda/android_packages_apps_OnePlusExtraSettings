@@ -339,12 +339,6 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
        return true;
    }
 
-      @Override
-      public boolean onPreferenceTreeClick(final Preference preference) {
-          super.onPreferenceTreeClick(preference);
-          return false;
-      }
-
    private void enableStatusBarBatteryDependents() {
          mBatterySaverColor.setEnabled(true);
     }
