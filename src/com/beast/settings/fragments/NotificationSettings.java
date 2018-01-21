@@ -8,6 +8,7 @@ import com.android.settings.R;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceCategory;
 import android.support.v7.preference.PreferenceScreen;
+import android.provider.Settings;
 
 import com.android.settings.SettingsPreferenceFragment;
 

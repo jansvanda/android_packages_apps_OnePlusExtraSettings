@@ -173,8 +173,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
       @Override
       public boolean onPreferenceTreeClick(final Preference preference) {
           super.onPreferenceTreeClick(preference);
-          final ContentResolver resolver = getActivity().getContentResolver();
-          if (preference.getKey().equals(KEY_CUSTOM_CARRIER_LABEL) {
+          final ContentResolver resolver = getContentResolver();
                 if (preference.getKey().equals(KEY_CUSTOM_CARRIER_LABEL)) {
                         AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
                         alert.setTitle(R.string.custom_carrier_label_title);
@@ -199,8 +198,6 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
                         alert.setNegativeButton(getString(android.R.string.cancel), null);
                         alert.show();
                         return true;
-                 }
-                 return true;
           }
       
           return false;
