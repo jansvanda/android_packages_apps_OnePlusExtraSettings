@@ -42,7 +42,6 @@
        android:fragment="com.beast.settings.fragments.CarrierLabel"
        android:title="@string/carrier_label_title" />	
 
-
    </PreferenceCategory>
 
  <PreferenceCategory 

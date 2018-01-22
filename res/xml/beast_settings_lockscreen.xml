@@ -57,52 +57,15 @@
            android:dependency="lock_screen_custom_notif" />
    
     </PreferenceCategory>
-      <!-- Hide Lockscreen clock & date -->
+
      <PreferenceCategory
        android:key="hide_lockscreen_items_category"
             android:title="@string/lock_style_cat"  />
 
-     <ListPreference
-         android:key="lock_clock_fonts"
-         android:title="@string/lock_clock_font_title"
-         android:dialogTitle="@string/lock_clock_font_dialog_title"
-         android:entries="@array/lock_clock_fonts_entries"
-         android:entryValues="@array/lock_clock_fonts_values"
-         android:summary="@string/lock_clock_font_summary"
-        android:persistent="false" />   
-      <net.margaritov.preference.colorpicker.ColorPickerPreference
-          android:key="lockscreen_owner_info_color"
-          android:title="@string/lockscreen_owner_info_color"
-          android:defaultValue="0xffffffff" />
-       <net.margaritov.preference.colorpicker.ColorPickerPreference
-          android:key="lockscreen_alarm_color"
-          android:title="@string/lockscreen_alarm_color"
-          android:defaultValue="0xffffffff" />
-       <net.margaritov.preference.colorpicker.ColorPickerPreference
-          android:key="lockscreen_clock_color"
-          android:title="@string/lockscreen_clock_color"
-          android:defaultValue="0xffffffff" />
-       <net.margaritov.preference.colorpicker.ColorPickerPreference
-          android:key="lockscreen_clock_date_color"
-          android:title="@string/lockscreen_clock_date_color"
-          android:defaultValue="0xffffffff" />
+    <Preference
+       android:fragment="com.beast.settings.fragments.LockscreenStyle"
+       android:title="@string/lockscreen_style_title" />	
 
-
-      <com.beast.settings.preferences.SystemSettingSwitchPreference
-        	android:key="show_lockscreen_alarm"
-         	android:title="@string/lockscreen_alarm_title"
-         	android:defaultValue="true" />
-        
-      <com.beast.settings.preferences.SystemSettingSwitchPreference
-        android:key="hide_lockscreen_clock"
-        android:title="@string/hide_lockscreen_clock_title"
-        android:defaultValue="true" />
-
-     <com.beast.settings.preferences.SystemSettingSwitchPreference
-        android:key="hide_lockscreen_date"
-        android:title="@string/hide_lockscreen_date_title"
-        android:defaultValue="true" />
-        
     <PreferenceCategory android:key="lockscreen_actions" android:title="@string/lockscreen_actions">
             <com.beast.settings.preferences.SystemSettingSwitchPreference
                android:key="fp_unlock_keystore"
