@@ -42,7 +42,8 @@
            <SwitchPreference
             android:key="button_brightness_sw"
             android:title="@string/button_brightness_sw_title"
-            android:persistent="false" />
+            android:persistent="false"
+            android:dependency="hardware_keys_disable" />
 
         <ListPreference
             android:dialogTitle="@string/backlight_timeout_title"
@@ -50,19 +51,22 @@
             android:entryValues="@array/backlight_timeout_values"
             android:key="backlight_timeout"
             android:persistent="false"
-            android:title="@string/backlight_timeout_title" />
+            android:title="@string/backlight_timeout_title"
+            android:dependency="hardware_keys_disable" />
 
         <com.beast.settings.preferences.SystemSettingSwitchPreference
             android:key="button_backlight_on_touch_only"
             android:title="@string/button_backlight_on_touch_only_title"
             android:summary="@string/button_backlight_on_touch_only_summary"
-            android:defaultValue="false" />
+            android:defaultValue="false" 
+            android:dependency="hardware_keys_disable"/>
 
         <com.beast.settings.preferences.SystemSettingSwitchPreference
             android:key="anbi_enabled"
             android:title="@string/anbi_title"
             android:summary="@string/anbi_summary"
-            android:defaultValue="false" />
+            android:defaultValue="false"
+            android:dependency="hardware_keys_disable" />
         
          <com.beast.settings.preferences.CustomSeekBarPreference
             android:key="button_brightness"
@@ -70,7 +74,8 @@
             android:max="255"
             settings:min="0"
             settings:units=""
-            android:persistent="false" />
+            android:persistent="false"
+            android:dependency="hardware_keys_disable" />
 
 
     </PreferenceCategory>
