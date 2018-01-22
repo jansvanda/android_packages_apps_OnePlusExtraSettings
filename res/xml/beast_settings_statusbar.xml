@@ -51,7 +51,6 @@
 
    </PreferenceCategory>
 
-   
  <PreferenceCategory 
      android:key="weather_category"
      android:title="@string/qs_omnijaws_category">
