@@ -957,6 +957,9 @@
     <string name="land_hor_title">Landscape height</string>
     <string name="positive_done">Done</string>
 
+    <string name="weather_config_summary"></string>
+    <string name="qs_omnijaws_category">Weather</string>
+
     <!-- SmartBar -->
     <string name="smartbar_category">Smartbar</string>
     <string name="smartbar_settings_title">Smartbar settings</string>

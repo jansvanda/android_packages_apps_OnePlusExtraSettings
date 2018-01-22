@@ -17,7 +17,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     android:title="@string/notifications_title"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
-    
+     
    <PreferenceCategory
     android:title="@string/heads_cat_title">
    <com.beast.settings.preferences.SystemSettingSwitchPreference

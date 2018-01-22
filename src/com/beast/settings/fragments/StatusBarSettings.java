@@ -237,24 +237,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
                      STATUS_BAR_SHOW_CARRIER, showCarrierLabel);
              mShowCarrierLabel.setSummary(mShowCarrierLabel.getEntries()[index]);
              return true;
-         }
-        return false;
-    }
-
-  private void updateCustomLabelTextSummary() {
-      mCustomCarrierLabelText = Settings.System.getString(
-              getContentResolver(), Settings.System.CUSTOM_CARRIER_LABEL);
-       if (TextUtils.isEmpty(mCustomCarrierLabelText)) {
-          mCustomCarrierLabel.setSummary(R.string.custom_carrier_label_notset);
-      } else {
-          mCustomCarrierLabel.setSummary(mCustomCarrierLabelText);
-      }
-  }
-  
-   @Override
-  public boolean onPreferenceTreeClick(final Preference preference) {
-      final ContentResolver resolver = getActivity().getContentResolver();
-      if (preference.getKey().equals(CUSTOM_CARRIER_LABEL)) {
+         } else       if (preference.getKey().equals(CUSTOM_CARRIER_LABEL)) {
           AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
           alert.setTitle(R.string.custom_carrier_label_title);
           alert.setMessage(R.string.custom_carrier_label_explain);
@@ -267,7 +250,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
                   new DialogInterface.OnClickListener() {
                       public void onClick(DialogInterface dialog, int whichButton) {
                           String value = ((Spannable) input.getText()).toString().trim();
-                          Settings.System.putString(resolver, Settings.System.CUSTOM_CARRIER_LABEL, value);
+                          Settings.System.putString(getContentResolver(), Settings.System.CUSTOM_CARRIER_LABEL, value);
                           updateCustomLabelTextSummary();
                           Intent i = new Intent();
                           i.setAction(Intent.ACTION_CUSTOM_CARRIER_LABEL_CHANGED);
@@ -276,8 +259,19 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
                   });
           alert.setNegativeButton(getString(android.R.string.cancel), null);
           alert.show();
+          return true;
+         }
+        return false;
+    }
+
+  private void updateCustomLabelTextSummary() {
+      mCustomCarrierLabelText = Settings.System.getString(
+              getContentResolver(), Settings.System.CUSTOM_CARRIER_LABEL);
+       if (TextUtils.isEmpty(mCustomCarrierLabelText)) {
+          mCustomCarrierLabel.setSummary(R.string.custom_carrier_label_notset);
+      } else {
+          mCustomCarrierLabel.setSummary(mCustomCarrierLabelText);
       }
-      return super.onPreferenceTreeClick(preference);
   }
 
  private boolean isOmniJawsServiceInstalled() {
