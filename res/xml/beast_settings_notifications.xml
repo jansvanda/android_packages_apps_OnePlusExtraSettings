@@ -18,6 +18,11 @@
     android:title="@string/notifications_title"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
     
+   <Preference 
+        android:key="force_ambient_for_media_pref" 
+        android:fragment="com.beast.settings.AmbientTicker" 
+        android:title="@string/force_ambient_for_media_pref_title"/> 
+   
    <PreferenceCategory
     android:title="@string/heads_cat_title">
    <com.beast.settings.preferences.SystemSettingSwitchPreference
