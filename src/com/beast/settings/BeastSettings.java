@@ -24,24 +24,16 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Surface;
-import android.preference.Preference;
+import android.support.v7.preference.Preference;
 import com.android.settings.R;
 import com.android.settings.development.DevelopmentSettings;
+import android.support.v7.preference.Preference.OnPreferenceChangeListener;
 import android.content.Intent;
 import android.content.Context;
 
 import com.android.settings.SettingsPreferenceFragment;
 
-public class BeastSettings extends SettingsPreferenceFragment {
-
-     // Package name of the omnniswitch app
-    public static final String OMNISWITCH_PACKAGE_NAME = "org.omnirom.omniswitch";
-    // Intent for launching the omniswitch settings actvity
-    public static Intent INTENT_OMNISWITCH_SETTINGS = new Intent(Intent.ACTION_MAIN)
-         .setClassName(OMNISWITCH_PACKAGE_NAME, OMNISWITCH_PACKAGE_NAME + ".SettingsActivity");
-
-    private Preference mOmniSwitch;
-    private static final String OMNISWITCH = "omniswitch";
+public class BeastSettings extends SettingsPreferenceFragment  {
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -50,7 +42,6 @@ public class BeastSettings extends SettingsPreferenceFragment {
         final String KEY_DEVICE_PART_PACKAGE_NAME = "org.omnirom.device";
 
         addPreferencesFromResource(R.xml.beast_settings);
-        mOmniSwitch = (Preference) findPreference(OMNISWITCH);
 
         // DeviceParts
         if (!DevelopmentSettings.isPackageInstalled(getActivity(), KEY_DEVICE_PART_PACKAGE_NAME)) {
@@ -63,16 +54,6 @@ public class BeastSettings extends SettingsPreferenceFragment {
     public int getMetricsCategory() {
         return MetricsProto.MetricsEvent.BEAST_SETTINGS;
     }
-
-    @Override
-    public boolean onPreferenceTreeClick(Preference preference) {
-        if (preference == mOmniSwitch){
-            startActivity(INTENT_OMNISWITCH_SETTINGS);
-            return true;
-        }
-        return super.onPreferenceTreeClick(preference);
-    }
-
 
     public static void lockCurrentOrientation(Activity activity) {
         int currentRotation = activity.getWindowManager().getDefaultDisplay().getRotation();

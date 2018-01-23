@@ -45,7 +45,7 @@ import com.beast.settings.preferences.SystemSettingSwitchPreference;
 import com.android.settings.Utils;
 import com.android.internal.util.beast.BeastUtils;
 import android.util.Log;
-
+import android.widget.LinearLayout;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
@@ -59,7 +59,6 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
 
     private CustomSeekBarPreference mThreshold;
     private SystemSettingSwitchPreference mNetMonitor;
-    private static final String TAG = "StatusbarBatteryStyle";
  
     private static final String STATUS_BAR_BATTERY_SAVER_COLOR = "status_bar_battery_saver_color";
     private static final String CATEGORY_WEATHER = "weather_category";
@@ -68,13 +67,16 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
     private static final String WEATHER_SERVICE_PACKAGE = "org.omnirom.omnijaws";
     private static final String CHRONUS_ICON_PACK_INTENT = "com.dvtonder.chronus.ICON_PACK";
 
+    
+    private static final String TAG = "StatusBarWeather";
+
+    private LinearLayout mView;
+
     private ColorPickerPreference mBatterySaverColor;
     private ListPreference mTickerMode;
     private ListPreference mLogoStyle;
     private ColorPickerPreference mStatusBarLogoColor;
     static final int DEFAULT_LOGO_COLOR = 0xff009688;
-    private ListPreference mWeatherIconPack;
-    private PreferenceCategory mWeatherCategory;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -84,6 +86,9 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
 
         PreferenceScreen prefSet = getPreferenceScreen();
         final ContentResolver resolver = getActivity().getContentResolver();
+
+           int intColor;
+        String hexColor;
 
         boolean isNetMonitorEnabled = Settings.System.getIntForUser(resolver,
                 Settings.System.NETWORK_TRAFFIC_STATE, 1, UserHandle.USER_CURRENT) == 1;
@@ -101,9 +106,9 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
 
         mStatusBarLogoColor = (ColorPickerPreference) findPreference("status_bar_logo_color");
         mStatusBarLogoColor.setOnPreferenceChangeListener(this);
-        int intColor = Settings.System.getInt(getContentResolver(),
+        intColor = Settings.System.getInt(getContentResolver(),
                 Settings.System.STATUS_BAR_LOGO_COLOR, DEFAULT_LOGO_COLOR);
-        String hexColor = String.format("#%08x", (DEFAULT_LOGO_COLOR & intColor));
+        hexColor = String.format("#%08x", (DEFAULT_LOGO_COLOR & intColor));
         mStatusBarLogoColor.setSummary(hexColor);
         mStatusBarLogoColor.setNewPreviewColor(intColor);
 
@@ -152,7 +157,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
               mWeatherIconPack.setOnPreferenceChangeListener(this);
           }
 
-        int batterySaverColor = Settings.Secure.getInt(getContentResolver(),
+        int batterySaverColor = Settings.Secure.getInt(resolver,
                 Settings.Secure.STATUS_BAR_BATTERY_SAVER_COLOR, 0xfff4511e);
         mBatterySaverColor = (ColorPickerPreference) findPreference("status_bar_battery_saver_color");
         mBatterySaverColor.setNewPreviewColor(batterySaverColor);
@@ -215,9 +220,10 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
             int valueIndex = mWeatherIconPack.findIndexOfValue(value);
             mWeatherIconPack.setSummary(mWeatherIconPack.getEntries()[valueIndex]);
             return true;     
-          } 
+          }
         return false;
     }
+
 
  private boolean isOmniJawsServiceInstalled() {
        return BeastUtils.isAvailableApp(WEATHER_SERVICE_PACKAGE, getActivity());
@@ -256,8 +262,6 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
            entries.add(label);
        }
    }
-
-    
 
    private boolean isOmniJawsEnabled() {
        final Uri SETTINGS_URI

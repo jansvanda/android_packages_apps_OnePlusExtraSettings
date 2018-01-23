@@ -195,10 +195,44 @@
     <string name="header_provider_disabled">Disabled</string>
     <string name="custom_header_title">Custom header image</string>
 
-     <string name="seekbar_no_default_value">No default value set</string>
+    <string name="seekbar_no_default_value">No default value set</string>
     <string name="seekbar_default_value_set">Value set to default of <xliff:g id="number">%d</xliff:g></string>
     <string name="seekbar_default_value_already_set">Default value is already set</string>
     <string name="seekbar_default_string">@string/default_string</string>
+    <string name="status_bar_temperature_title">Weather temperature</string>
+    <string name="sb_weather_ic_title">Icon pack</string>
+    <string name="status_bar_temperature_location_title">Placement</string>
+    <string name="status_bar_temperature_location_right">Show on right</string> 
+    <string name="status_bar_temperature_location_left">Show on left</string> 
+    <string name="status_bar_weather_color_title">Temperature color</string> 
+    <string name="status_bar_weather_size_title">Font size</string> 
+    <string name="status_bar_weather_font_style_title">Font</string> 
+    <string name="status_bar_weather_font_normal">Normal</string> 
+    <string name="status_bar_weather_font_italic">Italic</string> 
+    <string name="status_bar_weather_font_bold">Bold</string> 
+    <string name="status_bar_weather_font_bold_italic">Bold Italic</string> 
+    <string name="status_bar_weather_font_light">Light</string> 
+    <string name="status_bar_weather_font_light_italic">Light Italic</string> 
+    <string name="status_bar_weather_font_thin">Thin</string> 
+    <string name="status_bar_weather_font_thin_italic">Thin Italic</string> 
+    <string name="status_bar_weather_font_condensed">Condensed</string> 
+    <string name="status_bar_weather_font_condensed_italic">Condensed Italic</string> 
+    <string name="status_bar_weather_font_condensed_light">Condensed Light</string> 
+    <string name="status_bar_weather_font_condensed_light_italic">Condensed Light Italic</string>  
+    <string name="status_bar_weather_font_condensed_bold">Condensed Bold</string> 
+    <string name="status_bar_weather_font_condensed_bold_italic">Condensed Bold Italic</string> 
+    <string name="status_bar_weather_font_medium">Medium</string> 
+    <string name="status_bar_weather_font_medium_italic">Medium Italic</string> 
+    <string name="status_bar_weather_font_black">Black</string> 
+    <string name="status_bar_weather_font_black_italic">Black Italic</string>  
+    <string name="status_bar_weather_font_dancingscript">DancingScript</string> 
+    <string name="status_bar_weather_font_dancingscript_bold">DancingScript Bold</string> 
+    <string name="status_bar_weather_font_comingsoon">ComingSoon</string> 
+    <string name="status_bar_weather_font_notoserif">NotoSerif Normal</string> 
+    <string name="status_bar_weather_font_notoserif_italic">NotoSerif Italic</string> 
+    <string name="status_bar_weather_font_notoserif_bold">NotoSerif Bold</string> 
+    <string name="status_bar_weather_font_notoserif_bold_italic">NotoSerif Bold Italic</string> 
+ 
 
     <string name="wakelock_cat_title">Wakelock control</string>
     <string name="heads_cat_title">Heads-up control</string>
@@ -220,7 +254,9 @@
     <string name="jumpcamera_cat_misc">Misc</string>
     <string name="advance_cat_misc">Advanced Battery options</string>
     <string name="omniswitch_settings_title">Omni switch</string>
-    <string name="omniswitch_summary">Replace stock recents with Omni-recents</string>
+    <string name="omniswitch_start_settings_summary "></string>
+    <string name="status_bar_weather_image_color_title ">Image color</string>
+    <string name="statusbar_weather_style ">Icon Style</string>
 
     <!-- StatusBar weather settings -->
     <string name="statusbar_weather_title">Status bar weather</string>

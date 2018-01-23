@@ -47,6 +47,11 @@
  <PreferenceCategory 
      android:key="weather_category"
      android:title="@string/qs_omnijaws_category">
+
+    <Preference
+       android:fragment="com.beast.settings.fragments.StatusBarSettingsWeather"
+       android:title="@string/statusbar_weather_style" />	
+
      <PreferenceScreen
          android:title="@string/weather_config_title"
          android:summary="@string/weather_config_summary" >
