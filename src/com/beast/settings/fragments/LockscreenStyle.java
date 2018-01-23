@@ -64,6 +64,7 @@ public class LockscreenStyle extends SettingsPreferenceFragment implements Prefe
     private static final String LOCKSCREEN_CONDITION_COLOR = "lock_screen_weather_con_color";
     private static final String PREF_ICON_COLOR = "weather_icon_color";
     private static final String LOCKSCREEN_CITY_COLOR = "lock_screen_weather_city_color";
+    private static final String LOCKSCREEN_CAMERA_ICON_COLOR = "lockscreen_camera_icon_color";
 
     private static final int MONOCHROME_ICON = 0;
 
@@ -107,6 +108,14 @@ public class LockscreenStyle extends SettingsPreferenceFragment implements Prefe
         hexColor = String.format("#%08x", (0x99FFFFFF & intColor));
         mLockscreenPhoneColorPicker.setSummary(hexColor);
         mLockscreenPhoneColorPicker.setNewPreviewColor(intColor);
+
+        mLockscreenCameraColorPicker = (ColorPickerPreference) findPreference(LOCKSCREEN_CAMERA_ICON_COLOR);
+        mLockscreenCameraColorPicker.setOnPreferenceChangeListener(this);
+        intColor = Settings.System.getInt(getContentResolver(),
+                    Settings.System.LOCKSCREEN_CAMERA_ICON_COLOR, TRANSPARENT);
+        hexColor = String.format("#%08x", (0x99FFFFFF & intColor));
+        mLockscreenCameraColorPicker.setSummary(hexColor);
+        mLockscreenCameraColorPicker.setNewPreviewColor(intColor);
 
         mLockscreenLockColorPicker = (ColorPickerPreference) findPreference(LOCKSCREEN_LOCK_ICON_COLOR);
         mLockscreenLockColorPicker.setOnPreferenceChangeListener(this);
@@ -206,7 +215,15 @@ public class LockscreenStyle extends SettingsPreferenceFragment implements Prefe
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
                 ContentResolver resolver = getActivity().getContentResolver();
-        if (preference == mShorcutsColor) {
+         if (preference == mLockscreenCameraColorPicker) {
+            String hex = ColorPickerPreference.convertToARGB(
+                    Integer.valueOf(String.valueOf(newValue)));
+            preference.setSummary(hex);
+            int intHex = ColorPickerPreference.convertToColorInt(hex);
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+                    Settings.System.LOCKSCREEN_CAMERA_ICON_COLOR, intHex);
+            return true;
+        } else if (preference == mShorcutsColor) {
             String hex = ColorPickerPreference.convertToARGB(
                     Integer.valueOf(String.valueOf(newValue)));
             preference.setSummary(hex);
