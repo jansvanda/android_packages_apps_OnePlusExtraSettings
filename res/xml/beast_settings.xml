@@ -130,6 +130,16 @@
             android:fragment="com.beast.settings.AppSidebar"
             android:title="@string/app_sidebar_title" />
 
+        
+        <!-- OmniSwitch -->
+       <Preference
+            android:key="omniswitch"
+            android:id="@+id/omniswitch"
+            android:title="@string/omniswitch_settings_title"
+            android:summary="@string/omniswitch_start_settings_summary"
+            android:persistent="false" />
+
+
         <!-- Gesture anywhere -->
         <Preference
             android:key="gesture_anywhere"

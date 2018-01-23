@@ -219,6 +219,8 @@
     <string name="screenshot_cat_misc">Three finger screenshot</string>
     <string name="jumpcamera_cat_misc">Misc</string>
     <string name="advance_cat_misc">Advanced Battery options</string>
+    <string name="omniswitch_settings_title">Omni switch</string>
+    <string name="omniswitch_summary">Replace stock recents with Omni-recents</string>
 
     <!-- StatusBar weather settings -->
     <string name="statusbar_weather_title">Status bar weather</string>
