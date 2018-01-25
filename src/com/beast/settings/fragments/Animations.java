@@ -50,8 +50,7 @@ import java.util.ArrayList;
 import com.android.internal.logging.nano.MetricsProto;
 import com.android.settings.R;
 
-    public class Animations extends SettingsPreferenceFragment implements
-        Preference.OnPreferenceChangeListener {
+    public class Animations extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
         private static final String TAG = "Animations";
 
@@ -73,6 +72,7 @@ import com.android.settings.R;
         private static final String SCROLLINGCACHE_PREF = "pref_scrollingcache";
         private static final String SCROLLINGCACHE_PERSIST_PROP = "persist.sys.scrollingcache";
         private static final String SCROLLINGCACHE_DEFAULT = "1";
+        private static final String KEY_SCREEN_OFF_ANIMATION = "screen_off_animation"; 
 
         ListPreference mActivityOpenPref;
         ListPreference mActivityClosePref;
@@ -86,6 +86,7 @@ import com.android.settings.R;
         ListPreference mWallpaperIntraClose;
         ListPreference mTaskOpenBehind;
 
+        private ListPreference mScreenOffAnimation; 
         private int[] mAnimations;
         private String[] mAnimationsStrings;
         private String[] mAnimationsNum;
@@ -214,6 +215,15 @@ import com.android.settings.R;
                     SystemProperties.get(SCROLLINGCACHE_PERSIST_PROP, SCROLLINGCACHE_DEFAULT)));
             mScrollingCachePref.setOnPreferenceChangeListener(this);
 
+            
+            mScreenOffAnimation = (ListPreference) findPreference(KEY_SCREEN_OFF_ANIMATION); 
+            int screenOffAnimation = Settings.Global.getInt(getActivity().getContentResolver(), 
+                    Settings.Global.SCREEN_OFF_ANIMATION, 0); 
+    
+            mScreenOffAnimation.setValue(Integer.toString(screenOffAnimation)); 
+            mScreenOffAnimation.setSummary(mScreenOffAnimation.getEntry()); 
+            mScreenOffAnimation.setOnPreferenceChangeListener(this); 
+
             return;
         }
 
@@ -309,7 +319,13 @@ import com.android.settings.R;
                 if (newValue != null) {
                     SystemProperties.set(SCROLLINGCACHE_PERSIST_PROP, (String)newValue);
                 return true;
-                }
+            } else  if (preference == mScreenOffAnimation) { 
+                int value = Integer.valueOf((String) newValue); 
+                int index = mScreenOffAnimation.findIndexOfValue((String) newValue); 
+                mScreenOffAnimation.setSummary(mScreenOffAnimation.getEntries()[index]); 
+                Settings.Global.putInt(getActivity().getContentResolver(), Settings.Global.SCREEN_OFF_ANIMATION, value); 
+                return true; 
+            } 
                 return false;
             }
 

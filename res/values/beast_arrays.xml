@@ -529,6 +529,18 @@
       <item>11</item>
   </string-array>
 
+      <string-array name="screen_off_animation_entries"> 
+        <item>@string/screen_off_animation_default</item> 
+        <item>@string/screen_off_animation_crt</item> 
+        <item>@string/screen_off_animation_scale</item> 
+    </string-array> 
+ 
+    <string-array name="screen_off_animation_values" translatable="false"> 
+        <item>0</item> 
+        <item>2</item> 
+        <item>3</item> 
+    </string-array> 
+
     <!-- Volume dialog stroke -->
 
     <string-array name="volume_dialog_stroke_entries" translatable="false">
