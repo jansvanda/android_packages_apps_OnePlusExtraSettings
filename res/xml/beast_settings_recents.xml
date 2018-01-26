@@ -43,10 +43,10 @@
         android:key="stock_recents"
         android:title="@string/stock_recents_title">
 
-    <!-- <Preference
+    <Preference
         android:key="recents_icon_pack"
         android:title="@string/recents_icon_pack_title"
-        android:summary="@string/recents_icon_pack_summary" /> -->
+        android:summary="@string/recents_icon_pack_summary" />
 
     <com.beast.settings.preferences.SystemSettingSwitchPreference
           android:key="systemui_recents_mem_display"

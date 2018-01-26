@@ -61,6 +61,7 @@ public class RecentsSettings extends SettingsPreferenceFragment implements
 
     private static final String IMMERSIVE_RECENTS = "immersive_recents";
     private static final String RECENTS_CLEAR_ALL_LOCATION = "recents_clear_all_location";
+    private static final String USE_SLIM_RECENTS = "use_slim_recents";
 
     private final static String[] sSupportedActions = new String[] {
         "org.adw.launcher.THEMES",
@@ -76,7 +77,6 @@ public class RecentsSettings extends SettingsPreferenceFragment implements
     private AlertDialog mDialog;
     private ListView mListView;
 
-    // private SwitchPreference mSlimToggle;
     private Preference mStockIconPacks;
 
     private ListPreference mImmersiveRecents;
@@ -84,20 +84,16 @@ public class RecentsSettings extends SettingsPreferenceFragment implements
     private ListPreference mRecentsClearAllLocation;
     private SwitchPreference mRecentsClearAll;
 
+    private Preference mSlimRecents;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.beast_settings_recents);
         ContentResolver resolver = getActivity().getContentResolver();
 
-    //   //  mStockIconPacks = (Preference) findPreference("recents_icon_pack");
-    //     mSlimToggle = (SwitchPreference) findPreference("use_slim_recents");
-    //     boolean enabled = Settings.System.getIntForUser(
-    //             resolver, Settings.System.USE_SLIM_RECENTS, 0,
-    //             UserHandle.USER_CURRENT) == 1;
-    //     mSlimToggle.setChecked(enabled);
-    //   //  mStockIconPacks.setEnabled(!enabled);
-    //     mSlimToggle.setOnPreferenceChangeListener(this);
+        
+        mStockIconPacks = (Preference) findPreference("recents_icon_pack");
 
         mImmersiveRecents = (ListPreference) findPreference(IMMERSIVE_RECENTS);
         mImmersiveRecents.setValue(String.valueOf(Settings.System.getInt(
@@ -120,16 +116,6 @@ public class RecentsSettings extends SettingsPreferenceFragment implements
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         ContentResolver resolver = getActivity().getContentResolver();
-        // if (preference == mSlimToggle) {
-        //     boolean value = (Boolean) newValue;
-        //     Settings.System.putIntForUser(getActivity().getContentResolver(),
-        //             Settings.System.USE_SLIM_RECENTS, value ? 1 : 0,
-        //             UserHandle.USER_CURRENT);
-        //     mSlimToggle.setChecked(value);
-        //    // mStockIconPacks.setEnabled(!value);
-        //     return true;
-        // } else 
-        
         if (preference == mImmersiveRecents) {
             Settings.System.putInt(getContentResolver(), Settings.System.IMMERSIVE_RECENTS,
                     Integer.valueOf((String) newValue));
@@ -143,35 +129,30 @@ public class RecentsSettings extends SettingsPreferenceFragment implements
                     Settings.System.RECENTS_CLEAR_ALL_LOCATION, location, UserHandle.USER_CURRENT);
             mRecentsClearAllLocation.setSummary(mRecentsClearAllLocation.getEntries()[index]);
             return true;
+        } else  if (preference == mStockIconPacks) {
+            pickIconPack(getContext());
+            return true;
         }
         return false;
     }
 
-    @Override
-    public boolean onPreferenceTreeClick(Preference preference) {
-        // if (preference == mStockIconPacks) {
-        //     pickIconPack(getContext());
-        //     return true;
-        // }
-        return super.onPreferenceTreeClick(preference);
-    }
 
     /** Recents Icon Pack Dialog **/
     private void pickIconPack(final Context context) {
-        // if (mDialog != null) {
-        //     return;
-        // }
-        // Map<String, IconPackInfo> supportedPackages = getSupportedPackages(context);
-        // if (supportedPackages.isEmpty()) {
-        //     Toast.makeText(context, R.string.no_iconpacks_summary, Toast.LENGTH_SHORT).show();
-        //     return;
-        // }
-        // AlertDialog.Builder builder = new AlertDialog.Builder(context)
-        // .setTitle(R.string.dialog_pick_iconpack_title)
-        // .setOnDismissListener(this)
-        // .setNegativeButton(R.string.cancel, null)
-        // .setView(createDialogView(context, supportedPackages));
-        // mDialog = builder.show();
+        if (mDialog != null) {
+            return;
+        }
+        Map<String, IconPackInfo> supportedPackages = getSupportedPackages(context);
+        if (supportedPackages.isEmpty()) {
+            Toast.makeText(context, R.string.no_iconpacks_summary, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(context)
+        .setTitle(R.string.dialog_pick_iconpack_title)
+        .setOnDismissListener(this)
+        .setNegativeButton(R.string.cancel, null)
+        .setView(createDialogView(context, supportedPackages));
+        mDialog = builder.show();
     }
 
     private View createDialogView(final Context context, Map<String, IconPackInfo> supportedPackages) {
