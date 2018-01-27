@@ -57,7 +57,7 @@ import java.util.Map;
 import java.util.List;
 
 public class RecentsSettings extends SettingsPreferenceFragment implements
-        Preference.OnPreferenceChangeListener, DialogInterface.OnDismissListener {
+Preference.OnPreferenceChangeListener, DialogInterface.OnDismissListener {
 
     private static final String IMMERSIVE_RECENTS = "immersive_recents";
     private static final String RECENTS_CLEAR_ALL_LOCATION = "recents_clear_all_location";
@@ -136,9 +136,6 @@ public class RecentsSettings extends SettingsPreferenceFragment implements
                     Settings.System.RECENTS_CLEAR_ALL_LOCATION, location, UserHandle.USER_CURRENT);
             mRecentsClearAllLocation.setSummary(mRecentsClearAllLocation.getEntries()[index]);
             return true;
-        } else  if (preference == mStockIconPacks) {
-            pickIconPack(getContext());
-            return true;
         } else  if (preference == mSlimToggle) {
            boolean value = (Boolean) newValue;
            Settings.System.putIntForUser(getActivity().getContentResolver(),
@@ -149,6 +146,15 @@ public class RecentsSettings extends SettingsPreferenceFragment implements
            return true;
        }
         return false;
+    }
+
+    @Override
+    public boolean onPreferenceTreeClick(Preference preference) {
+        if (preference == mStockIconPacks) {
+            pickIconPack(getContext());
+            return true;
+        }
+        return super.onPreferenceTreeClick(preference);
     }
 
 

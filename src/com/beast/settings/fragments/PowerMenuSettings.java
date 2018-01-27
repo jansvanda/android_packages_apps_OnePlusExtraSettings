@@ -87,9 +87,7 @@ public class PowerMenuSettings extends SettingsPreferenceFragment
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.POWERMENU_TORCH, value ? 1 : 0);
             return true;
-        }
-
-           if (preference == mOnTheGoAlphaPref) {
+        }else if (preference == mOnTheGoAlphaPref) {
              float val = (Integer) newValue;
              Settings.System.putFloat(getContentResolver(),
  		    Settings.System.ON_THE_GO_ALPHA, val / 100);

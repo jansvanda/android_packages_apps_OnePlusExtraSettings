@@ -382,6 +382,7 @@
     <string name="dialog_pick_iconpack_title">Pick icon pack</string>
     <string name="default_iconpack_title">Default icons</string>
     <string name="gesture_preference">Jump to camera</string>
+    <string name="battery_title">Battery</string>
 
     <!-- Carrier Label -->
    <string name="carrier_category">Carrier label</string>

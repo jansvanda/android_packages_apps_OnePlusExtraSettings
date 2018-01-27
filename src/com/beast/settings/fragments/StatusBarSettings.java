@@ -65,7 +65,6 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
 
     private LinearLayout mView;
 
-    private ColorPickerPreference mBatterySaverColor;
     private ListPreference mTickerMode;
     private ListPreference mLogoStyle;
     private ColorPickerPreference mStatusBarLogoColor;
@@ -119,14 +118,6 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
                  1, UserHandle.USER_CURRENT);
          mTickerMode.setValue(String.valueOf(tickerMode));
          mTickerMode.setSummary(mTickerMode.getEntry());
-
-        int batterySaverColor = Settings.Secure.getInt(resolver,
-                Settings.Secure.STATUS_BAR_BATTERY_SAVER_COLOR, 0xfff4511e);
-        mBatterySaverColor = (ColorPickerPreference) findPreference("status_bar_battery_saver_color");
-        mBatterySaverColor.setNewPreviewColor(batterySaverColor);
-        mBatterySaverColor.setOnPreferenceChangeListener(this);
- 
-        enableStatusBarBatteryDependents();
    
     }
 
@@ -147,12 +138,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
                     Settings.System.NETWORK_TRAFFIC_AUTOHIDE_THRESHOLD, val,
                     UserHandle.USER_CURRENT);
             return true;
-        } else  if (preference.equals(mBatterySaverColor)) {
-             int color = ((Integer) objValue).intValue();
-             Settings.Secure.putInt(getContentResolver(),
-                     Settings.Secure.STATUS_BAR_BATTERY_SAVER_COLOR, color);
-             return true;
-         } else if (preference.equals(mTickerMode)) {
+        } else if (preference.equals(mTickerMode)) {
                 int tickerMode = Integer.parseInt(((String) objValue).toString());
                 Settings.System.putIntForUser(getContentResolver(),
                         Settings.System.STATUS_BAR_SHOW_TICKER, tickerMode, UserHandle.USER_CURRENT);
@@ -178,10 +164,6 @@ public class StatusBarSettings extends SettingsPreferenceFragment implements
             return true;
         } 
         return false;
-    }
-
-   private void enableStatusBarBatteryDependents() {
-         mBatterySaverColor.setEnabled(true);
     }
 
     @Override

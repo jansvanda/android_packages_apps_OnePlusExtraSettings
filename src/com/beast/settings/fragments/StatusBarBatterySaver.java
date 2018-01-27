@@ -42,7 +42,7 @@ Preference.OnPreferenceChangeListener {
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-        addPreferencesFromResource(R.xml.beast_settings_statusbattersaver);
+        addPreferencesFromResource(R.xml.beast_settings_statusbatterysaver);
         PreferenceScreen prefSet = getPreferenceScreen();
 
         ContentResolver resolver = getActivity().getContentResolver();
