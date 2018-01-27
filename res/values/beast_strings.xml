@@ -245,7 +245,7 @@
     <string name="network_cat_misc">Network traffic</string>
     <string name="icon_cat_misc">Icon control</string>
     <string name="action_cat_misc">Statusbar action</string>
-    <string name="batterysaver_cat_misc">Battery saver</string>
+    <string name="batterysaver_cat_misc">Battery saver settings</string>
     <string name="tuner_cat_misc">System tuner</string>
     <string name="ticker_cat_misc">Ticker</string>
     <string name="logo_cat_misc">Logo</string>
