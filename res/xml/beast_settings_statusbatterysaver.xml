@@ -25,10 +25,10 @@
                 android:persistent="false"
                 android:defaultValue="0xfff4511e" /> <!-- deep orange 600 -->
 
+      
         <com.beast.settings.preferences.SystemSettingSwitchPreference
                 android:key="battery_save_mode_color"
                 android:title="@string/battery_saver_color_title"
                 android:summary="@string/battery_saver_color_summary"
                 android:defaultValue="false" />
-
 </PreferenceScreen>

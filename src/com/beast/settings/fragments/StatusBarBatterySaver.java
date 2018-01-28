@@ -34,10 +34,6 @@ import com.android.settings.SettingsPreferenceFragment;
 public class StatusBarBatterySaver extends SettingsPreferenceFragment implements
 Preference.OnPreferenceChangeListener {
 
-        private static final String TAG = "LowBatteryColor";
-        private static final String STATUS_BAR_BATTERY_SAVER_COLOR = "status_bar_battery_saver_color";
-        private ColorPickerPreference mBatterySaverColor;
-
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -45,14 +41,7 @@ Preference.OnPreferenceChangeListener {
         addPreferencesFromResource(R.xml.beast_settings_statusbatterysaver);
         PreferenceScreen prefSet = getPreferenceScreen();
 
-        ContentResolver resolver = getActivity().getContentResolver();
-          int batterySaverColor = Settings.Secure.getInt(resolver,
-                Settings.Secure.STATUS_BAR_BATTERY_SAVER_COLOR, 0xfff4511e);
-        mBatterySaverColor = (ColorPickerPreference) findPreference("status_bar_battery_saver_color");
-        mBatterySaverColor.setNewPreviewColor(batterySaverColor);
-        mBatterySaverColor.setOnPreferenceChangeListener(this);
-          enableStatusBarBatteryDependents();
-      
+        ContentResolver resolver = getActivity().getContentResolver();     
 
     }
 
@@ -60,25 +49,10 @@ Preference.OnPreferenceChangeListener {
     public boolean onPreferenceChange(Preference preference, Object objValue) {
         AlertDialog dialog;
         ContentResolver resolver = getActivity().getContentResolver();
-        if (preference.equals(mBatterySaverColor)) {
-                   int color = ((Integer) objValue).intValue();
-                   Settings.Secure.putInt(resolver,
-                           Settings.Secure.STATUS_BAR_BATTERY_SAVER_COLOR, color);
-                   return true;
-               }
+   
        return false;
     }
 
-    private void enableStatusBarBatteryDependents() {
-               mBatterySaverColor.setEnabled(true);
-          }
-
-    public boolean onPreferenceTreeClick(Preference preference) {
-        ContentResolver resolver = getActivity().getContentResolver();
-        boolean value;
-
-        return false;
-    }
 
     @Override
     public int getMetricsCategory() {
