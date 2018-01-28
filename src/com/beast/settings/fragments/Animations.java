@@ -72,7 +72,7 @@ import com.android.settings.R;
         private static final String SCROLLINGCACHE_PREF = "pref_scrollingcache";
         private static final String SCROLLINGCACHE_PERSIST_PROP = "persist.sys.scrollingcache";
         private static final String SCROLLINGCACHE_DEFAULT = "1";
-        private static final String KEY_SCREEN_OFF_ANIMATION = "screen_off_animation"; 
+        private static final String SCREEN_OFF_ANIMATION = "screen_off_animation"; 
 
         ListPreference mActivityOpenPref;
         ListPreference mActivityClosePref;
@@ -86,7 +86,7 @@ import com.android.settings.R;
         ListPreference mWallpaperIntraClose;
         ListPreference mTaskOpenBehind;
 
-        private ListPreference mScreenOffAnimation; 
+        private ListPreference mScreenOffAnimation;
         private int[] mAnimations;
         private String[] mAnimationsStrings;
         private String[] mAnimationsNum;
@@ -99,11 +99,7 @@ import com.android.settings.R;
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            createCustomView();
-        }
-
-        private void createCustomView() {
-            mContext = getActivity().getApplicationContext();
+              mContext = getActivity().getApplicationContext();
             ContentResolver resolver = getActivity().getContentResolver();
 
             addPreferencesFromResource(R.xml.beast_settings_animation);
@@ -216,15 +212,12 @@ import com.android.settings.R;
             mScrollingCachePref.setOnPreferenceChangeListener(this);
 
             
-            mScreenOffAnimation = (ListPreference) findPreference(KEY_SCREEN_OFF_ANIMATION); 
-            int screenOffAnimation = Settings.Global.getInt(getActivity().getContentResolver(), 
-                    Settings.Global.SCREEN_OFF_ANIMATION, 0); 
-    
-            mScreenOffAnimation.setValue(Integer.toString(screenOffAnimation)); 
-            mScreenOffAnimation.setSummary(mScreenOffAnimation.getEntry()); 
-            mScreenOffAnimation.setOnPreferenceChangeListener(this); 
-
-            return;
+          mScreenOffAnimation = (ListPreference) findPreference(SCREEN_OFF_ANIMATION);
+         int screenOffStyle = Settings.System.getInt(resolver,
+                 Settings.System.SCREEN_OFF_ANIMATION, 0);
+         mScreenOffAnimation.setValue(String.valueOf(screenOffStyle));
+         mScreenOffAnimation.setSummary(mScreenOffAnimation.getEntry());
+         mScreenOffAnimation.setOnPreferenceChangeListener(this);
         }
 
         @Override
@@ -237,17 +230,18 @@ import com.android.settings.R;
             super.onResume();
         }
 
-        public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-
-            return false;
-        }
-
         @Override
         public boolean onPreferenceChange(Preference preference, Object newValue) {
-
             boolean result = false;
             final String key = preference.getKey();
-            if (preference == mActivityOpenPref) {
+           if (preference == mScreenOffAnimation) {
+                String value = (String) newValue;
+                Settings.System.putInt(getActivity().getContentResolver(),
+                        Settings.System.SCREEN_OFF_ANIMATION, Integer.valueOf(value));
+                int valueIndex = mScreenOffAnimation.findIndexOfValue(value);
+                mScreenOffAnimation.setSummary(mScreenOffAnimation.getEntries()[valueIndex]);
+                return true;
+            } else if (preference == mActivityOpenPref) {
                 int val = Integer.parseInt((String) newValue);
                 result = Settings.System.putInt(getActivity().getContentResolver(),
                         Settings.System.ACTIVITY_ANIMATION_CONTROLS[0], val);
@@ -319,19 +313,10 @@ import com.android.settings.R;
                 if (newValue != null) {
                     SystemProperties.set(SCROLLINGCACHE_PERSIST_PROP, (String)newValue);
                 return true;
-            } else  if (preference == mScreenOffAnimation) { 
-                int value = Integer.valueOf((String) newValue); 
-                int index = mScreenOffAnimation.findIndexOfValue((String) newValue); 
-                mScreenOffAnimation.setSummary(mScreenOffAnimation.getEntries()[index]); 
-                Settings.Global.putInt(getActivity().getContentResolver(), Settings.Global.SCREEN_OFF_ANIMATION, value); 
-                return true; 
-            } 
-                return false;
-            }
-
-            // Come here, for the System Animations
-            preference.setSummary(getProperSummary(preference));
-            return result;
+            }  
+            }              
+             return false;
+        
         }
 
         private String getProperSummary(Preference preference) {
