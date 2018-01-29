@@ -156,4 +156,18 @@
 			
     </PreferenceCategory>
 
+  	<PreferenceCategory android:key="update_category"
+         android:title="@string/update_category">	
+
+     <Preference
+            android:key="ota_part"
+            android:persistent="false"
+            android:title="@string/ota_part_title">
+            <intent android:action="android.intent.action.MAIN"
+                 android:targetPackage="com.beast.ota"
+                 android:targetClass="com.beast.ota.activities.MainActivity"/>
+        </Preference>	
+
+     </PreferenceCategory>
+
 </PreferenceScreen>

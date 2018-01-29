@@ -304,6 +304,8 @@
     <string name="clock_date_format_custom">Custom java format</string>
     <string name="menu_cancel">Cancel</string>
     <string name="clock_style_cat">Clock Customization</string>
+    <string name="update_category">Updater</string>
+    <string name="ota_part_title">Beast OTA</string>
     
     <!-- Power menu and dialogs opacity -->
     <string name="power">Power Menu Tweaks</string>
