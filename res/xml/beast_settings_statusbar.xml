@@ -96,6 +96,17 @@
 
    </PreferenceCategory>
 
+    <PreferenceCategory 
+     android:key="clock_customazation_category"
+     android:title="@string/clock_style_cat">
+
+   <Preference
+        android:key="status_bar_clock"
+        android:fragment="com.beast.settings.fragments.StatusBarClockSettings"
+        android:title="@string/status_bar_clock_title" />
+    
+     </PreferenceCategory>
+
  <PreferenceCategory 
      android:key="weather_category"
      android:title="@string/qs_omnijaws_category">
@@ -105,8 +116,7 @@
        android:title="@string/statusbar_weather_style" />	
 
  </PreferenceCategory>
-
-         
+      
         <PreferenceCategory
             android:title="@string/ticker_cat_misc"  />
 
