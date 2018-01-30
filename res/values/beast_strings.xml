@@ -417,7 +417,6 @@
     <string name="battery_title">Battery</string>
 
     <!-- Carrier Label -->
-   <string name="carrier_category">Carrier label</string>
    <string name="carrier_options">Select display locations</string>
    <string name="custom_carrier_label_title">Custom carrier label</string>
    <string name="custom_carrier_label_explain">Please enter a new label. Leave blank to revert to stock label.</string>
@@ -427,6 +426,13 @@
    <string name="show_carrier_keyguard">Lockscreen only</string>
    <string name="show_carrier_statusbar">Statusbar only</string>
    <string name="show_carrier_enabled">Lockscreen &amp; statusbar</string>
+
+    <string name="more_category">More Customizations</string>
+    <string name="carrier_label_sum">Customize Carrier on Statusbar and Lockscreen</string>
+    <string name="status_bar_clock_sum">Customize statusbar Clock</string>
+    <string name="statusbar_weather_sum">Customize statusbar weather icon</string>
+    <string name="battery_title_sum">Customize battery saver panel</string>
+    <string name="statusbar_items_sum">Setup UI Tuner</string>
 
     <!-- Hide Lockscreen clock & date -->
     <string name="hide_lockscreen_items_title">Lockscreen items</string>
