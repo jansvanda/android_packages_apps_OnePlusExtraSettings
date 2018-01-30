@@ -42,7 +42,7 @@ import com.beast.settings.preferences.CustomSeekBarPreference;
 
 public class ButtonSettings extends ActionFragment implements OnPreferenceChangeListener {
 
-    //Keys
+//Keys
     private static final String KEY_BUTTON_BRIGHTNESS = "button_brightness";
     private static final String KEY_BUTTON_BRIGHTNESS_SW = "button_brightness_sw";
     private static final String KEY_BACKLIGHT_TIMEOUT = "backlight_timeout";
@@ -88,8 +88,8 @@ public class ButtonSettings extends ActionFragment implements OnPreferenceChange
         int keysDisabled = 0;
         if (!needsNavbar) {
             mHwKeyDisable = (SwitchPreference) findPreference(HWKEY_DISABLE);
-            keysDisabled = Settings.System.getIntForUser(getContentResolver(),
-                    Settings.System.HARDWARE_KEYS_DISABLE, 0,
+            keysDisabled = Settings.Secure.getIntForUser(getContentResolver(),
+                    Settings.Secure.HARDWARE_KEYS_DISABLE, 0,
                     UserHandle.USER_CURRENT);
             mHwKeyDisable.setChecked(keysDisabled != 0);
             mHwKeyDisable.setOnPreferenceChangeListener(this);
@@ -214,7 +214,7 @@ public class ButtonSettings extends ActionFragment implements OnPreferenceChange
             return true;
         } else if (preference == mHwKeyDisable) {
             boolean value = (Boolean) newValue;
-            Settings.System.putInt(getContentResolver(), Settings.System.HARDWARE_KEYS_DISABLE,
+            Settings.Secure.putInt(getContentResolver(), Settings.Secure.HARDWARE_KEYS_DISABLE,
                     value ? 1 : 0);
             setActionPreferencesEnabled(!value);
             return true;
@@ -226,7 +226,7 @@ public class ButtonSettings extends ActionFragment implements OnPreferenceChange
     protected boolean usesExtendedActionsList() {
         return true;
     }
-
+    
     @Override
     public int getMetricsCategory() {
         return MetricsProto.MetricsEvent.BEAST_SETTINGS;
