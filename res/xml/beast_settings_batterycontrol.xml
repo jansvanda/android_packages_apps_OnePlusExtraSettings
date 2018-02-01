@@ -49,10 +49,4 @@
              android:title="@string/wakelock_blocker_title" />
   </PreferenceCategory>
 
-   <!-- Signature spoofing -->
-  <com.beast.settings.preferences.SecureSettingSwitchPreference
-            android:key="allow_signature_fake"
-            android:title="@string/allow_signature_fake"
-            android:summary="@string/allow_signature_fake_summary"/>
-
 </PreferenceScreen>

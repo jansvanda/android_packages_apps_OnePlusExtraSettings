@@ -150,9 +150,15 @@
 			
         <!-- IME -->
         <Preference
-            android:key="keyboard_category"
+            android:key="keyboard_ime_title"
             android:title="@string/keyboard_ime_title"
             android:fragment="com.beast.settings.fragments.IMESettings"/>
+
+          <!-- System -->
+        <Preference 
+            android:key="system_key"
+            android:title="@string/system_cat_title"
+            android:fragment="com.beast.settings.fragments.SystemSettings"/>
 			
     </PreferenceCategory>
 
