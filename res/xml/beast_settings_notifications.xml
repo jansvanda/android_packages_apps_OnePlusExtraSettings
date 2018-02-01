@@ -82,11 +82,6 @@
    <PreferenceCategory
     android:title="@string/misc_cat_title">
 
-        <com.beast.settings.preferences.SystemSettingSwitchPreference
-         android:key="force_expanded_notifications"
-         android:title="@string/force_expanded_notifications_title"
-         android:summary="@string/force_expanded_notifications_summary" />
-
       <com.beast.settings.preferences.SystemSettingSwitchPreference
         android:key="force_expanded_notifications"
         android:title="@string/force_expanded_notifications_title"
