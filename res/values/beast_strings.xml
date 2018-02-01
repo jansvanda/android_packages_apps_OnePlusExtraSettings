@@ -768,6 +768,10 @@
 
     <string name="notification_light_settings">Notification light</string>
 
+    <!-- Volume Dialog Expanded -->
+    <string name="volume_dialog_force_expanded_title">Force Expanded Volume Panel</string>
+    <string name="volume_dialog_force_expanded_summary">Force the volume panel to always appear in expanded mode</string>
+
     <!-- ADB debugging notifications -->
     <string name="adb_notify">ADB notification</string>
     <string name="adb_notify_summary">Display a notification when android debugging is enabled</string>
