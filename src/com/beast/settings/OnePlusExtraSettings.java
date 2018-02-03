@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2016 The Pure Nexus Project
  * used for beast OS
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.beast.settings;
+package com.opextra.settings;
 
 import com.android.internal.logging.nano.MetricsProto;
 
@@ -33,7 +33,7 @@ import android.content.Context;
 
 import com.android.settings.SettingsPreferenceFragment;
 
-public class BeastSettings extends SettingsPreferenceFragment  {
+public class OnePlusExtraSettings extends SettingsPreferenceFragment  {
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -41,7 +41,7 @@ public class BeastSettings extends SettingsPreferenceFragment  {
         final String KEY_DEVICE_PART = "device_part";
         final String KEY_DEVICE_PART_PACKAGE_NAME = "org.omnirom.device";
 
-        addPreferencesFromResource(R.xml.beast_settings);
+        addPreferencesFromResource(R.xml.opextra_settings);
 
         // DeviceParts
         if (!DevelopmentSettings.isPackageInstalled(getActivity(), KEY_DEVICE_PART_PACKAGE_NAME)) {
@@ -52,7 +52,7 @@ public class BeastSettings extends SettingsPreferenceFragment  {
 
     @Override
     public int getMetricsCategory() {
-        return MetricsProto.MetricsEvent.BEAST_SETTINGS;
+        return MetricsProto.MetricsEvent.OPEXTRA_SETTINGS;
     }
 
     public static void lockCurrentOrientation(Activity activity) {
