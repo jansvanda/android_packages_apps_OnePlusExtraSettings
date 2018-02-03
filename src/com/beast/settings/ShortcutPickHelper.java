@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.beast.settings;
+package com.opextra.settings;
 
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -41,7 +41,7 @@ import android.widget.ExpandableListView;
 import android.widget.TextView;
 
 import com.android.settings.R;
-import com.beast.settings.ShortcutPickHelper.AppExpandableAdapter.GroupInfo;
+import com.opextra.settings.ShortcutPickHelper.AppExpandableAdapter.GroupInfo;
 
 public class ShortcutPickHelper {
 
