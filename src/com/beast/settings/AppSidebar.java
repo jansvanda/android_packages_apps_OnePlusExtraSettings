@@ -1,4 +1,4 @@
-package com.beast.settings;
+package com.opextra.settings;
 
 import android.content.ComponentName;
 import android.content.Intent;
@@ -13,7 +13,7 @@ import android.provider.Settings;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 
-import com.beast.settings.preferences.CustomSeekBarPreference;
+import com.opextra.settings.preferences.CustomSeekBarPreference;
 import com.android.internal.logging.nano.MetricsProto;
 
 public class AppSidebar extends SettingsPreferenceFragment implements
@@ -39,7 +39,7 @@ public class AppSidebar extends SettingsPreferenceFragment implements
 
     @Override
     public int getMetricsCategory() {
-        return MetricsProto.MetricsEvent.BEAST_SETTINGS;
+        return MetricsProto.MetricsEvent.OPEXTRA_SETTINGS;
     }
 
     @Override
